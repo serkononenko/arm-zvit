@@ -12,9 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use(express.static('D:/play0rdie/web-projects/arm-zvit/front-end/dist/'));
 
-app.post('/regUser', upload.array(), (req, res) => {
+app.post('/registration', upload.array(), (req, res) => {
     if(!req.body) return res.sendStatus(400);
     regUser(req.body);
+});
+
+app.post('/login', upload.array(), (req, res) => {
+    if(!req.body) return res.sendStatus(400);
+    
 });
 
 app.listen(3000, ()=> {
