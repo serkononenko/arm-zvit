@@ -1,0 +1,41 @@
+.header {
+    padding: 30px;
+    border-bottom: 1px solid green;
+    box-shadow: 0px 5px 10px 0px rgba(0, 128, 0, 1);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.header__logo {
+    position: relative;
+    width: 80px;
+    margin-right: 50px;
+}
+
+.logo__layout {
+    max-width: 100%;
+    display: block;
+}
+
+.logo__top {
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.header__title {
+    text-align: center;
+    color: green;    
+}
+
+.header__title h1 {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.header__title span {
+    font-size: 24px;
+}

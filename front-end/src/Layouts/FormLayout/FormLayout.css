@@ -1,0 +1,15 @@
+.FormLayout {
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #EDEEEF;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 600px) {
+    .FormLayout {
+        width: 500px;
+    }
+}
