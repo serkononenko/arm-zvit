@@ -1,4 +1,5 @@
 import React from 'react';
+import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
 import '../Forms.css';
 
@@ -45,24 +46,26 @@ export default class RegistrationForm extends React.Component {
 
     render() {
         return (
-            <form className='form'  onSubmit = { this.handleSubmit } >
-                <span className='form__title'>Реєстрація в системі</span>
-                <label>
-                    Логін:
-                    <input className = "form__input" type='text' name='login' onChange = { this.handleChange } minLength='6' required />
-                </label>
-                <label>
-                    Пароль:
-                    <input className = "form__input" type='password' name='password' onChange = { this.handleChange } required />
-                </label>
-                <label>
-                    Підтвердження паролю:
-                    <input className = "form__input" type='password' name='repassword' onChange = { this.handleChange } required />
-                </label>
+            <FormLayout>
+                <form className='form'  onSubmit = { this.handleSubmit } >
+                    <span className='form__title'>Реєстрація в системі</span>
+                    <label>
+                        Логін:
+                        <input className = "form__input" type='text' name='login' onChange = { this.handleChange } minLength='6' required />
+                    </label>
+                    <label>
+                        Пароль:
+                        <input className = "form__input" type='password' name='password' onChange = { this.handleChange } required />
+                    </label>
+                    <label>
+                        Підтвердження паролю:
+                        <input className = "form__input" type='password' name='repassword' onChange = { this.handleChange } required />
+                    </label>
                     <div className = 'form__btn'>
                         <input className = 'btn' type='submit' value='Зареєструватися' />
                     </div>
                 </form>
+            </FormLayout>
         )
     }
 }

@@ -2,10 +2,16 @@ import React from 'react';
 
 import './FormLayout.css';
 
-export default function FormLayout(props) {
-    return (
-        <div className='FormLayout'>
-            { props.children }
-        </div>
-    )
+export default class FormLayout extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className='FormLayout'>
+                {this.props.children}
+            </div>
+        )
+    }
 }

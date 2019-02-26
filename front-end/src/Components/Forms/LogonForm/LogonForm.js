@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FormLayout from '../../../Layouts/FormLayout/FormLayout'
 
 import '../Forms.css'
 
@@ -40,21 +41,23 @@ export default class LogonForm extends React.Component {
 
     render() {
         return (
-            <form className='form'  onSubmit = { this.handleSubmit } >
-                <span className='form__title'>Вхід в систему</span>
-                <label>
-                    Логін:
-                    <input className = "form__input" type ='text' name ='login' onChange = { this.handleChange } minLength ='6' required />
-                </label>
-                <label>
-                    Пароль:
-                    <input className = "form__input" type ='password' name ='password' onChange = { this.handleChange } required />
-                </label>
-                <div className = 'form__btn'>
-                    <input className = 'btn' type ='submit' value ='Вхід' />
-                    <Link className = 'btn' to = '/registration' >Реєстрація</Link>
-                </div>
-            </form>
+            <FormLayout>
+                <form className='form'  onSubmit = { this.handleSubmit } >
+                    <span className='form__title'>Вхід в систему</span>
+                    <label>
+                        Логін:
+                        <input className = "form__input" type ='text' name ='login' onChange = { this.handleChange } minLength ='6' required />
+                    </label>
+                    <label>
+                        Пароль:
+                        <input className = "form__input" type ='password' name ='password' onChange = { this.handleChange } required />
+                    </label>
+                    <div className = 'form__btn'>
+                        <input className = 'btn' type ='submit' value ='Вхід' />
+                        <Link className = 'btn' to = '/registration' >Реєстрація</Link>
+                    </div>
+                </form>
+            </FormLayout>
         )
     }
 }
