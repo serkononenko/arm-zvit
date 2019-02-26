@@ -32,8 +32,8 @@ export default class LogonForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login: login,
-                password: password
+                login,
+                password
             })
         })
         event.preventDefault();
