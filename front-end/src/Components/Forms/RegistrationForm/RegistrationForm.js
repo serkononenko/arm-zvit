@@ -30,7 +30,7 @@ export default class RegistrationForm extends React.Component {
                 login: login,
                 password: password
             };
-            fetch('/regUser', {
+            fetch('/registration', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

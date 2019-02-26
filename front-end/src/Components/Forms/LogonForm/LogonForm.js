@@ -25,7 +25,7 @@ export default class LogonForm extends React.Component {
     handleSubmit(event) {
         const login = this.state.login;
         const password = this.state.password;
-        fetch('/logOn', {
+        fetch('/login', {
             method: 'POST',
             credentials: 'include',
             headers: {
