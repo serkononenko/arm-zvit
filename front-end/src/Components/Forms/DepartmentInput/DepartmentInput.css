@@ -1,0 +1,9 @@
+.DepartmentInput {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.DepartmentInput__select {
+    width: 100%;
+    border-radius: 8px;
+}
