@@ -15,6 +15,14 @@ export default class App extends React.Component {
         this.state = {
             loggedIn: false
         };
+
+        this.logIn = this.logIn.bind(this);
+    }
+
+    logIn() {
+        this.setState({
+            loggedIn: true
+        })
     }
 
     render() {
@@ -23,7 +31,7 @@ export default class App extends React.Component {
                 <Header />
                     <Switch>
                         <Route exact path="/" render={ () => (this.state.loggedIn ? (<ContentLayout/>) : (<Redirect to="/login"/>))}/>
-                        <Route exact path="/login" render={ (props) =>  <LogonForm {...props} /> } />
+                        <Route exact path="/login" render={ () =>  <LogonForm logIn={ this.logIn } />  } />
                         <Route exact path="/registration" render={ (props) => <RegistrationForm {...props} /> } />
                     </Switch>
             </React.Fragment>
