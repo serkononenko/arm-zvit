@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 //create Shema
 const userBaseChema = new mongoose.Schema({
     login: String,
-    password: String
+    password: String,
+    isAdmin: Boolean
 });
 
 //create Model
