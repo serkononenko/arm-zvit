@@ -14,11 +14,11 @@ export default class DepartmentInput extends React.Component {
 
     getDeparnmentList(url) {
         fetch(url, {method: 'GET'})
-            .then((result) => this.setState({departmentList: result}));
+            .then((res) => this.setState({departmentList: res.status}));
     }
 
     componentDidMount() {
-        this.getDeparnmentList('getDepartmentList')
+        this.getDeparnmentList('/getDepartmentList');
     }
 
     render() {
