@@ -8,7 +8,10 @@ export default class LogonForm extends React.Component {
     constructor(props) {
         super(props);
         
-        this.state = {};
+        this.state = {
+            login: '',
+            password: ''
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -32,9 +35,19 @@ export default class LogonForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login,
+                login: login.toLowerCase(),
                 password
             })
+        }).then(function(res) {
+            switch (res.status) {
+                case 200:
+                    alert('Вход выполнен!');
+                    break;
+                case 403:
+                    alert('Неправильное имя пользователя или пароль');
+                default:
+                    break;
+            }
         })
         event.preventDefault();
     }
@@ -46,11 +59,11 @@ export default class LogonForm extends React.Component {
                     <span className='form__title'>Вхід в систему</span>
                     <label>
                         Логін:
-                        <input className = "form__input" type ='text' name ='login' onChange = { this.handleChange } minLength ='6' required />
+                        <input className = "form__input" type ='text' name ='login' value={this.state.login} onChange = { this.handleChange } minLength ='6' required />
                     </label>
                     <label>
                         Пароль:
-                        <input className = "form__input" type ='password' name ='password' onChange = { this.handleChange } required />
+                        <input className = "form__input" type ='password' name ='password' value={this.state.password} onChange = { this.handleChange } required />
                     </label>
                     <div className = 'form__btn'>
                         <input className = 'btn' type ='submit' value ='Вхід' />

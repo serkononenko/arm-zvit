@@ -6,7 +6,11 @@ import '../Forms.css';
 export default class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            login: '',
+            password: '',
+            repassword: ''
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
@@ -27,7 +31,7 @@ export default class RegistrationForm extends React.Component {
         const repassword= this.state.repassword;
         if (password === repassword) {
             const data = {
-                login,
+                login: login.toLowerCase(),
                 password
             };
             fetch('/registration', {
@@ -38,7 +42,15 @@ export default class RegistrationForm extends React.Component {
                 },
                 body: JSON.stringify(data)
             }).then(function(res) {
-                console.log(res);
+                switch (res.status) {
+                    case 200:
+                        alert('Регистрация пользователя выполнена!');
+                        break;
+                    case 403:
+                        alert('Имя пользователя занято');
+                    default:
+                        break;
+                }
             });
         } else alert("Error");
         event.preventDefault();
@@ -51,15 +63,15 @@ export default class RegistrationForm extends React.Component {
                     <span className='form__title'>Реєстрація в системі</span>
                     <label>
                         Логін:
-                        <input className = "form__input" type='text' name='login' onChange = { this.handleChange } minLength='6' required />
+                        <input className = "form__input" type='text' name='login' value={this.state.login} onChange = { this.handleChange } minLength='6' required />
                     </label>
                     <label>
                         Пароль:
-                        <input className = "form__input" type='password' name='password' onChange = { this.handleChange } required />
+                        <input className = "form__input" type='password' name='password' value={this.state.password} onChange = { this.handleChange } required />
                     </label>
                     <label>
                         Підтвердження паролю:
-                        <input className = "form__input" type='password' name='repassword' onChange = { this.handleChange } required />
+                        <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
                     </label>
                     <div className = 'form__btn'>
                         <input className = 'btn' type='submit' value='Зареєструватися' />
