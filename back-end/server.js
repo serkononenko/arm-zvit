@@ -14,7 +14,7 @@ app.use(express.static('D:/play0rdie/web-projects/arm-zvit/front-end/dist/'));
 
 app.post('/registration', upload.array(), (req, res) => {
     if(!req.body) return res.sendStatus(400);
-    regUser(req.body);
+    regUser(req, res);
 });
 
 app.post('/login', upload.array(), (req, res) => {

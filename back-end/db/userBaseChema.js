@@ -9,22 +9,34 @@ const userBaseChema = new mongoose.Schema({
 //create Model
 const UserBase = mongoose.model('userBase', userBaseChema);
 
+function regUser(req, res) {
+    const body = req.body;
+    findUser(body.login)
+        .then((result) => {
+            if (!result.length) {
+                addUser(body);
+                res.status(200).send('OK');
+            } else {
+                res.status(403).send('Forbidden');
+            };
+        });
+}
+
 function addUser(body) {
-    findUser(body.login);
-//    deleteUser(body.login);
-    /*
     const userData = new UserBase({
         login: body.login,
         password: body.password
     });
-    userData.save();
-*/    
+    userData.save();    
 }
 
-function findUser(userName) {
-    UserBase.findOne({login: userName}, function(err, userBase) {
-        if(err) console.error(err)
-        else console.log(userBase);
+function findUser(login) {
+    var query = UserBase.find({ login });
+    return new Promise((resolve, reject) => {
+        query.exec((err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        });
     });
 }
 
@@ -35,4 +47,4 @@ function deleteUser(userName) {
     });
 }
 
-module.exports = addUser;
+module.exports = regUser;
