@@ -4,14 +4,19 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer(); // for parsing multipart/form-data
 const createDb = require('./db/setting');
-const regUser = require('./db/userBaseChema').regUser;
-const logIn = require('./db/userBaseChema').logIn;
+const regUser = require('./db/userBaseSchema').regUser;
+const logIn = require('./db/userBaseSchema').logIn;
+const getDepartmentList = require('./db/departmentListSchema').getDepartmentList;
 
 createDb();
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static('D:/play0rdie/web-projects/arm-zvit/front-end/dist/'));
+
+app.get ('/getDepartmentList', (req, res) => {
+    getDepartmentList(res);
+})
 
 app.post('/registration', upload.array(), (req, res) => {
     if(!req.body) return res.sendStatus(400);
