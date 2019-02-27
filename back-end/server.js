@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer(); // for parsing multipart/form-data
 const createDb = require('./db/setting');
-const regUser = require('./db/userBaseChema');
+const regUser = require('./db/userBaseChema').regUser;
+const logIn = require('./db/userBaseChema').logIn;
 
 createDb();
 app.use(bodyParser.json()); // for parsing application/json
@@ -19,7 +20,7 @@ app.post('/registration', upload.array(), (req, res) => {
 
 app.post('/login', upload.array(), (req, res) => {
     if(!req.body) return res.sendStatus(400);
-    
+    logIn(req, res);
 });
 
 app.listen(3000, ()=> {

@@ -22,6 +22,23 @@ function regUser(req, res) {
         });
 }
 
+function logIn(req, res) {
+    const body = req.body;
+    findUser(body.login)
+        .then((result) => {
+            if (!result) {
+                res.status(403).send('Forbidden');
+            } else {
+                if (body.password === result.password) {
+                    res.status(200).send('OK');
+                } else {
+                    res.status(403).send('Forbidden');
+                }
+            }
+
+        })
+}
+
 function addUser(body) {
     const userData = new UserBase({
         login: body.login,
@@ -31,7 +48,7 @@ function addUser(body) {
 }
 
 function findUser(login) {
-    var query = UserBase.find({ login });
+    var query = UserBase.findOne({ login });
     return new Promise((resolve, reject) => {
         query.exec((err, result) => {
             if (err) reject(err);
@@ -47,4 +64,4 @@ function deleteUser(userName) {
     });
 }
 
-module.exports = regUser;
+module.exports = {regUser, logIn};
