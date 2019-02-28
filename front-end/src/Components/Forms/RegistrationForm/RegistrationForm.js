@@ -29,11 +29,13 @@ export default class RegistrationForm extends React.Component {
     handleSubmit(event) {
         const login = this.state.login;
         const password = this. state.password;
-        const repassword= this.state.repassword;
+        const repassword = this.state.repassword;
+        const department = this.state.department;
         if (password === repassword) {
             const data = {
                 login: login.toLowerCase(),
-                password
+                password,
+                department
             };
             fetch('/registration', {
                 method: 'POST',

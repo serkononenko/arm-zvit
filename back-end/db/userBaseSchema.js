@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const userBaseChema = new mongoose.Schema({
     login: String,
     password: String,
+    department: String,
     isAdmin: Boolean
 });
 
@@ -14,12 +15,13 @@ function regUser(req, res) {
     const body = req.body;
     findUser(body.login)
         .then((result) => {
-            if (!result.length) {
+            if (!!result) {
+                res.status(403).send('Forbidden');
+            } else {
                 addUser(body);
                 res.status(200).send('OK');
-            } else {
-                res.status(403).send('Forbidden');
             };
+//          console.log(result);
         });
 }
 
@@ -43,7 +45,8 @@ function logIn(req, res) {
 function addUser(body) {
     const userData = new UserBase({
         login: body.login,
-        password: body.password
+        password: body.password,
+        department: body.department
     });
     userData.save();    
 }
