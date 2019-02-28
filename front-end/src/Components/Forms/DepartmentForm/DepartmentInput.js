@@ -1,5 +1,4 @@
 import React from 'react';
-import ContentLayout from '../../../Layouts/ContentLayout/ContentLayout';
 import './DepartmentInput.css';
 
 export default class DepartmentInput extends React.Component {
@@ -42,15 +41,13 @@ export default class DepartmentInput extends React.Component {
 
     render() {
         return (
-            <ContentLayout>
-                <div className='DepartmentInput__container'>
-                    <form onSubmit={this.handleSubmit} className='DepartmentInput'>
-                        <span className='DepartmentInput__title'>Додати новий відділ в БД</span>
-                        <input className='' type='text' name='department' value={this.state.department} onChange={this.handleChange} required />
-                        <input className='' type='submit' value='Додати' />
-                    </form>
-                </div>
-            </ContentLayout>
+            <div className='DepartmentInput__container'>
+                <form onSubmit={this.handleSubmit} className='DepartmentInput'>
+                    <span className='DepartmentInput__title'>Додати новий відділ в БД</span>
+                    <input className='' type='text' name='department' value={this.state.department} onChange={this.handleChange} required />
+                    <input className='' type='submit' value='Додати' />
+                </form>
+            </div>
         )
     }
 }
