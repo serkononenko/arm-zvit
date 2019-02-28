@@ -1,10 +1,10 @@
 import React from 'react';
 import './ContentLayout.css';
 
-const ContentLayout = () => {
+const ContentLayout = (props) => {
     return (
         <div className='ContentLayout'>
-            Hello World
+            {props.children}
         </div>
     )
 }
