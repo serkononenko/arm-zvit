@@ -6,7 +6,7 @@ export default class DepartmentInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            departmentList: ''
+            departmentList: []
         };
 
         this.getDeparnmentList = this.getDeparnmentList.bind(this);
@@ -23,17 +23,21 @@ export default class DepartmentInput extends React.Component {
             });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getDeparnmentList('/getDepartmentList');
     }
 
     render() {
         const departmentList = this.state.departmentList;
-        console.log(typeof departmentList);
+        const selectItems = departmentList.map((item) => 
+            <option key={item._id} value={item.department}>
+                {item.department}
+            </option>
+        );
         return (
-            <div className='DepartmentInput'>
-                <select className='DepartmentInput__select'>
-
+            <div className='DepartmentSelect'>
+                <select className='DepartmentSelect__select' name='department' value={this.props.value} onChange={this.props.onChange}>
+                    {selectItems}
                 </select>
             </div>
         )

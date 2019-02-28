@@ -74,7 +74,7 @@ export default class RegistrationForm extends React.Component {
                         Підтвердження паролю:
                         <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
                     </label>
-                    <DepartmentSelect />
+                    <DepartmentSelect onChange={this.handleChange} value={this.state.department} />
                     <div className = 'form__btn'>
                         <input className = 'btn' type='submit' value='Зареєструватися' />
                     </div>
