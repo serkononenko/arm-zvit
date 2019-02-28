@@ -38,7 +38,6 @@ export default class DepartmentInput extends React.Component {
             .then((res) => {
                 console.log(res.status);
             })
-        e.preventDefault();
     }
 
     render() {
