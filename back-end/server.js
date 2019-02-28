@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(express.static('D:/play0rdie/web-projects/arm-zvit/front-end/dist/'));
 
 app.get ('/getDepartmentList', (req, res) => {
+    console.log('/getDepartmentList');
     getDepartmentList(res);
 })
 
@@ -26,6 +27,7 @@ app.post('/addDepartment', upload.array(), (req, res) => {
 
 app.post('/registration', upload.array(), (req, res) => {
     if(!req.body) return res.sendStatus(400);
+    console.log('/registration');
     regUser(req, res);
 });
 
