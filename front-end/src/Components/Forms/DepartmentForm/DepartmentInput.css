@@ -1,0 +1,15 @@
+.DepartmentInput {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+}
+
+.DepartmentInput__container {
+    width: 300px;
+}
+
+.DepartmentInput :nth-child(1n) {
+    width: 80%;
+    margin: 10px auto;
+}

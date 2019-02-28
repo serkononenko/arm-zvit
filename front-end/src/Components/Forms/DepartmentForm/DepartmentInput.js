@@ -1,4 +1,5 @@
 import React from 'react';
+import ContentLayout from '../../../Layouts/ContentLayout/ContentLayout';
 import './DepartmentInput.css';
 
 export default class DepartmentInput extends React.Component {
@@ -24,22 +25,33 @@ export default class DepartmentInput extends React.Component {
 
     handleSubmit(e) {
         const department = this.state.department;
+        const data = {
+            department
+        }
         fetch('/addDepartment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(department)
+            body: JSON.stringify(data)
         })
+            .then((res) => {
+                console.log(res.status);
+            })
         e.preventDefault();
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type='text' name='department' value={this.state.department} onChange={this.handleChange} required />
-                <input type='submit' value='Додати' />
-            </form>
+            <ContentLayout>
+                <div className='DepartmentInput__container'>
+                    <form onSubmit={this.handleSubmit} className='DepartmentInput'>
+                        <span className='DepartmentInput__title'>Додати новий відділ в БД</span>
+                        <input className='' type='text' name='department' value={this.state.department} onChange={this.handleChange} required />
+                        <input className='' type='submit' value='Додати' />
+                    </form>
+                </div>
+            </ContentLayout>
         )
     }
 }

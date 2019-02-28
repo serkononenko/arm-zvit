@@ -16,17 +16,19 @@ function getDepartmentList(res) {
             resolve(result);
         });
     });
-    p.then((result) => {
-        res.status(200).send(result);
+    p.then((result, err) => {
+        if(result) res.status(200).send(result);
+        if(err) res.status(400);
     })
 }
 
 function addDepartment (req, res) {
-    var body = req.body;
-    var department = new DepartmentBase({
+    const body = req.body;
+    const department = new DepartmentBase({
         department: body.department
     });
     department.save();
+    res.status(200).send('OK');
 }
 
 module.exports = { getDepartmentList, addDepartment }

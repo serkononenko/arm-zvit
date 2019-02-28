@@ -14,18 +14,26 @@ export default class DepartmentInput extends React.Component {
 
     getDeparnmentList(url) {
         fetch(url, {method: 'GET'})
-            .then((res) => this.setState({departmentList: res.status}));
+            .then((res) => {
+                res.json().then((data) => {
+                    this.setState({
+                        departmentList: data
+                    })
+                })
+            });
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getDeparnmentList('/getDepartmentList');
     }
 
     render() {
+        const departmentList = this.state.departmentList;
+        console.log(typeof departmentList);
         return (
             <div className='DepartmentInput'>
                 <select className='DepartmentInput__select'>
-                    <option value="grapefruit">Grapefruit</option>
+
                 </select>
             </div>
         )
