@@ -6,6 +6,7 @@ const RegistrationForm = React.lazy(() => import('./Components/Forms/Registratio
 const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonForm'));
 
 import ContentLayout from './Layouts/ContentLayout/ContentLayout';
+import DepartmentForm from './Components/Forms/DepartmentForm/DepartmentInput';
 
 import './App.css';
 
@@ -13,16 +14,24 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: true
+            loggedIn: !!localStorage.getItem('loggedIn')
         };
 
-        this.logIn = this.logIn.bind(this);
+        this.handleLogIn = this.handleLogIn.bind(this);
     }
 
-    logIn() {
+    handleLogIn() {
         this.setState({
             loggedIn: true
-        })
+        });
+        localStorage.setItem('loggedIn');
+    }
+
+    handleLogOut() {
+        this.setState({
+            loggedIn: false
+        });
+        localStorage.removeItem('loggedIn');
     }
 
     render() {
@@ -30,8 +39,8 @@ export default class App extends React.Component {
             <React.Fragment>
                 <Header />
                     <Switch>
-                        <Route exact path="/" render={ () => (this.state.loggedIn ? (<ContentLayout/>) : (<Redirect to="/login"/>))}/>
-                        <Route exact path="/login" render={ () =>  <LogonForm logIn={ this.logIn } />  } />
+                        <Route exact path="/" render={ () => (this.state.loggedIn ? (<DepartmentForm/>) : (<Redirect to="/login"/>))}/>
+                        <Route exact path="/login" render={() => <LogonForm handleLogIn={this.handleLogIn} />} />
                         <Route exact path="/registration" render={ (props) => <RegistrationForm {...props} /> } />
                     </Switch>
             </React.Fragment>
