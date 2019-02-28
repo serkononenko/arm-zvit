@@ -13,7 +13,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false
+            loggedIn: true
         };
 
         this.logIn = this.logIn.bind(this);

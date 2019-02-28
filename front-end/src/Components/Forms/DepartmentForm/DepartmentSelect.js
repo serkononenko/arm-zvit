@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './DepartmentInput.css';
+import './DepartmentSelect.css';
 
 export default class DepartmentInput extends React.Component {
     constructor(props) {

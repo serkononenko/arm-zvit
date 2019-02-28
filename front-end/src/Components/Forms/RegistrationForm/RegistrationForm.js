@@ -1,6 +1,6 @@
 import React from 'react';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
-import DepartmentList from '../DepartmentInput/DepartmentInput';
+import DepartmentSelect from '../DepartmentForm/DepartmentSelect';
 
 import '../Forms.css';
 
@@ -74,7 +74,7 @@ export default class RegistrationForm extends React.Component {
                         Підтвердження паролю:
                         <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
                     </label>
-                    <DepartmentList />
+                    <DepartmentSelect />
                     <div className = 'form__btn'>
                         <input className = 'btn' type='submit' value='Зареєструватися' />
                     </div>
