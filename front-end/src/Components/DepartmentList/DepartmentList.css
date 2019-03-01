@@ -1,3 +1,67 @@
 .DepartmentList {
-    border: 1px solid red;
+    list-style: none;
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.DepartmentList__item {
+    border-top: 1px solid green;
+    overflow: hidden;
+}
+
+.DepartmentList__link {
+    text-decoration: none;
+    display: block;
+    padding: 16px 20px;
+    background-color: seagreen;
+    color: white;
+    position: relative;
+}
+
+.DepartmentList__link:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: seagreen;
+    left: 20px;
+    bottom: -7px;
+    transform: rotate(45deg);
+}
+
+.DepartmentList__sublist {
+    background-color: #333;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 0;
+}
+
+.DepartmentList__sublist a {
+    display: block;
+    padding: 16px 26px;
+    color: white;
+    font-size: 14px;
+    margin: 4px 0;
+    position: relative;
+}
+
+.DepartmentList__sublist a:before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: seagreen;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.DepartmentList__sublist a:hover:before {
+    opacity: 1;
+}
+
+.DepartmentList__item:target .DepartmentList__sublist {
+    max-height: 10em;
 }
