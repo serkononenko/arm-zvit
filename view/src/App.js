@@ -35,16 +35,39 @@ export default class App extends React.Component {
     }
 
     render() {
-        const elem = this.state.loggedIn ? (<MainPage/>) : (<Redirect to="/login"/>);
+        const elem = this.state.loggedIn ? (
+            <Switch>
+                <Route
+                    exact
+                    path="/"
+                    render={() => (
+                        <MainPage/>
+                    )}
+                />
+                <Redirect to="/" />
+            </Switch>
+        ) : (
+            <Switch>
+                <Route
+                    exact
+                    path="/login"
+                    render={() => <LogonForm handleLogIn={this.handleLogIn} />}
+                />
+                <Route
+                    exact
+                    path="/registration"
+                    render={() => <RegistrationForm />}
+                />
+                <Redirect to="/login" />
+            </Switch>
+        );
         return (
             <React.Fragment>
                 <Header />
-                <Switch>
-                    <Route exact path="/" render={ () => elem}/>
-                    <Route exact path="/login" render={() => <LogonForm handleLogIn={this.handleLogIn} />} />
-                    <Route exact path="/registration" render={ (props) => <RegistrationForm {...props} /> } />
-                </Switch>
+                {elem}
             </React.Fragment>
         )
+
     }
+
 };
