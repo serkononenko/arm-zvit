@@ -5,8 +5,11 @@ const departmentListSchema = new mongoose.Schema({
     department: String
 });
 
-//create Model
-const DepartmentBase = mongoose.model('departmentBase', departmentListSchema);
+//create & export Model
+module.exports = mongoose.model('departmentBase', departmentListSchema);
+
+
+
 
 function getDepartmentList(res) {
     var query = DepartmentBase.find();

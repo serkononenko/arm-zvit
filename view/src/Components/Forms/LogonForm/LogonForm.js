@@ -42,10 +42,10 @@ export default class LogonForm extends React.Component {
             switch (res.status) {
                 case 200:
                     alert('Вход выполнен!');
+                    this.props.handleLogIn();
                     break;
-                case 403:
-                    alert('Неправильное имя пользователя или пароль');
                 default:
+                    alert('Неправильное имя пользователя или пароль');
                     break;
             }
         })

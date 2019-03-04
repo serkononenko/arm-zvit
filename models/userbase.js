@@ -8,8 +8,10 @@ const userBaseChema = new mongoose.Schema({
     isAdmin: Boolean
 });
 
-//create Model
-const UserBase = mongoose.model('userBase', userBaseChema);
+//create & export Model
+module.exports = mongoose.model('userBase', userBaseChema);
+
+
 
 function regUser(req, res) {
     const body = req.body;
@@ -23,11 +25,12 @@ function regUser(req, res) {
 
 }
 
-function logIn(req, res) {
+async function logIn(req, res) {
     const body = req.body;
-    const result = findUser(body.login);
+    const result = await findUser(body.login);
+    console.log(result);
         if (!result) {
-            res.status(403).send('Forbidden');
+            res.status(401).send('Unauthorized');
         } else {
             if (body.password === result.password) {
                 res.status(200).send('OK');
@@ -57,5 +60,3 @@ async function deleteUser(userName) {
         else console.log('deleted login: ' + data.login);
     });
 }
-
-module.exports = {regUser, logIn};

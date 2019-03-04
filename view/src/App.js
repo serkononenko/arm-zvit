@@ -5,8 +5,7 @@ const Header = React.lazy(() => import('./Components/Header/Header'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
 const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonForm'));
 
-import ContentLayout from './Layouts/ContentLayout/ContentLayout';
-import DepartmentForm from './Components/Forms/DepartmentForm/DepartmentInput';
+import MainPage from './Components/MainPage/MainPage'
 
 import './App.css';
 
@@ -14,7 +13,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: !!localStorage.getItem('loggedIn')
+//            loggedIn: !!localStorage.getItem('loggedIn')
+            loggedIn: false
         };
 
         this.handleLogIn = this.handleLogIn.bind(this);
@@ -24,7 +24,7 @@ export default class App extends React.Component {
         this.setState({
             loggedIn: true
         });
-        localStorage.setItem('loggedIn');
+        localStorage.setItem('loggedIn', 'true');
     }
 
     handleLogOut() {
@@ -35,14 +35,15 @@ export default class App extends React.Component {
     }
 
     render() {
+        const elem = this.state.loggedIn ? (<MainPage/>) : (<Redirect to="/login"/>);
         return (
             <React.Fragment>
                 <Header />
-                    <Switch>
-                        <Route exact path="/" render={ () => (this.state.loggedIn ? (<DepartmentForm/>) : (<Redirect to="/login"/>))}/>
-                        <Route exact path="/login" render={() => <LogonForm handleLogIn={this.handleLogIn} />} />
-                        <Route exact path="/registration" render={ (props) => <RegistrationForm {...props} /> } />
-                    </Switch>
+                <Switch>
+                    <Route exact path="/" render={ () => elem}/>
+                    <Route exact path="/login" render={() => <LogonForm handleLogIn={this.handleLogIn} />} />
+                    <Route exact path="/registration" render={ (props) => <RegistrationForm {...props} /> } />
+                </Switch>
             </React.Fragment>
         )
     }
