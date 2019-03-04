@@ -18,19 +18,14 @@ export default class RegistrationForm extends React.Component {
     }
     
     handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        const { value, name } = event.target;
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        const login = this.state.login;
-        const password = this. state.password;
-        const repassword = this.state.repassword;
-        const department = this.state.department;
+        const { login, password, repassword, department } = this.state;
         if (password === repassword) {
             const data = {
                 login: login.toLowerCase(),
