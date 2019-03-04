@@ -25,7 +25,7 @@ const user_delete = (req, res) => {
     User.findOneAndDelete({login}, (err, result) => {
         if (err) console.error(err)
         else res.status(200).send('OK');
-    })
+    });
 }
 
 const register_user = (req, res) => {
@@ -35,9 +35,10 @@ const register_user = (req, res) => {
     } else user_create(req, res);
 }
 
-const login_user = (req, res) => {
+async function login_user(req, res) {
     const { login, password } = req.body;
-    const result = findUser(login);
+    const result = await findUser(login);
+    console.log(result);
     if (!result) {
         res.status(401).send('Unauthorized');
     } else {
@@ -51,4 +52,9 @@ const login_user = (req, res) => {
 
 async function findUser(login) {
     return await User.findOne({ login });
+}
+
+module.exports = {
+    login_user,
+    register_user
 }
