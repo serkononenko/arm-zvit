@@ -17,17 +17,16 @@ export default class LogonForm extends React.Component {
     }
 
     handleChange(event) {
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
+        const {name, value} = event.target;
         this.setState({
             [name]: value
         })
     }
 
     handleSubmit(event) {
-        const login = this.state.login;
-        const password = this.state.password;
+        event.preventDefault();
+        const that = this;
+        const {login, password} = this.state;
         fetch('/login', {
             method: 'POST',
             credentials: 'include',
@@ -39,17 +38,12 @@ export default class LogonForm extends React.Component {
                 password
             })
         }).then(function(res) {
-            switch (res.status) {
-                case 200:
-                    alert('Вход выполнен!');
-                    this.props.handleLogIn();
-                    break;
-                default:
-                    alert('Неправильное имя пользователя или пароль');
-                    break;
+            if (res.status == 200) {
+                that.props.handleLogIn();
+            } else {
+                alert('Невірний логін або пароль');
             }
         })
-        event.preventDefault();
     }
 
     render() {
