@@ -1,5 +1,6 @@
 import React from 'react';
 import {  Route, Switch, Redirect } from 'react-router-dom';
+import { DepartmentContext } from './Context'
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
@@ -13,11 +14,13 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: !!localStorage.getItem('loggedIn')
+            loggedIn: !!localStorage.getItem('loggedIn'),
+            departmentList: []
         };
 
         this.handleLogIn = this.handleLogIn.bind(this);
         this.handleLogOut = this.handleLogOut.bind(this);
+        this.getDeparnmentList = this.getDeparnmentList.bind(this);
     }
 
     handleLogIn() {
@@ -32,6 +35,21 @@ export default class App extends React.Component {
             loggedIn: false
         });
         localStorage.removeItem('loggedIn');
+    }
+
+    getDeparnmentList(url) {
+        fetch(url, {method: 'GET'})
+            .then((res) => {
+                res.json().then((data) => {
+                    this.setState({
+                        departmentList: data
+                    })
+                })
+            });
+    }
+
+    componentDidMount() {
+        this.getDeparnmentList('/department/list');
     }
 
     render() {
@@ -62,10 +80,10 @@ export default class App extends React.Component {
             </Switch>
         );
         return (
-            <React.Fragment>
+            <DepartmentContext.Provider value={this.state.departmentList}>
                 <Header />
                 {elem}
-            </React.Fragment>
+            </DepartmentContext.Provider>
         )
 
     }
