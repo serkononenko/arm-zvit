@@ -13,11 +13,11 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-//            loggedIn: !!localStorage.getItem('loggedIn')
-            loggedIn: false
+            loggedIn: !!localStorage.getItem('loggedIn')
         };
 
         this.handleLogIn = this.handleLogIn.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this);
     }
 
     handleLogIn() {
@@ -41,7 +41,7 @@ export default class App extends React.Component {
                     exact
                     path="/"
                     render={() => (
-                        <MainPage/>
+                        <MainPage handleLogOut={this.handleLogOut}/>
                     )}
                 />
                 <Redirect to="/" />
