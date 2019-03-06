@@ -28,8 +28,8 @@ const user_delete = (req, res) => {
     });
 }
 
-const register_user = (req, res) => {
-    const result = findUser(req.body.login);
+async function register_user(req, res) {
+    const result =  await findUser(req.body.login);
     if (!!result) {
         res.status(403).send('Forbidden');
     } else user_create(req, res);
@@ -38,7 +38,6 @@ const register_user = (req, res) => {
 async function login_user(req, res) {
     const { login, password } = req.body;
     const result = await findUser(login);
-    console.log(result);
     if (!result) {
         res.status(401).send('Unauthorized');
     } else {
