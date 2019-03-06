@@ -53,36 +53,27 @@ export default class App extends React.Component {
     }
 
     render() {
-        const elem = this.state.loggedIn ? (
-            <Switch>
-                <Route
-                    exact
-                    path="/"
-                    render={() => (
-                        <MainPage handleLogOut={this.handleLogOut}/>
-                    )}
-                />
-                <Redirect to="/" />
-            </Switch>
-        ) : (
-            <Switch>
-                <Route
-                    exact
-                    path="/login"
-                    render={() => <LogonForm handleLogIn={this.handleLogIn} />}
-                />
-                <Route
-                    exact
-                    path="/registration"
-                    render={() => <RegistrationForm />}
-                />
-                <Redirect to="/login" />
-            </Switch>
-        );
+        const { loggedIn } = this.state;
         return (
             <DepartmentContext.Provider value={this.state.departmentList}>
                 <Header />
-                {elem}
+                <Route exact path="/" render={() => (
+                    loggedIn ? (
+                        <MainPage handleLogOut={this.handleLogOut}/>
+                    ) : (
+                        <Redirect to="/login"/>
+                    )
+                )}/>
+                <Route path="/login" render={() => (
+                    loggedIn ? (
+                        <Redirect to="/"/>
+                    ) : (
+                        <LogonForm handleLogIn={this.handleLogIn}/>
+                    )
+                )}/>
+                <Route path="/registration" render={() => (
+                    <RegistrationForm />
+                )}/>
             </DepartmentContext.Provider>
         )
 
