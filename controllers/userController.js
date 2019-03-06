@@ -3,7 +3,9 @@ const User = require('../models/userbase');
 const user_list = (req, res) => {
     User.find({}, (err, result) => {
         if (err) console.error(err)
-        else res.send(result);
+        else {
+            res.status(200).send(result);
+        };
     });
 };
 
@@ -55,5 +57,6 @@ async function findUser(login) {
 
 module.exports = {
     login_user,
-    register_user
+    register_user,
+    user_list
 }
