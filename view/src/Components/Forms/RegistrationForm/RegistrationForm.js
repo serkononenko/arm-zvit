@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 import DepartmentSelect from '../DepartmentForm/DepartmentSelect';
 
@@ -10,7 +11,8 @@ export default class RegistrationForm extends React.Component {
         this.state = {
             login: '',
             password: '',
-            repassword: ''
+            repassword: '',
+            isRegistered: false 
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,6 +27,7 @@ export default class RegistrationForm extends React.Component {
     }
 
     handleSubmit(event) {
+        const that = this;
         const { login, password, repassword, department } = this.state;
         if (password === repassword) {
             const data = {
@@ -43,6 +46,9 @@ export default class RegistrationForm extends React.Component {
                 switch (res.status) {
                     case 200:
                         alert('Регистрация пользователя выполнена!');
+                        that.setState({
+                            isRegistered: true
+                        });
                         break;
                     case 403:
                         alert('Имя пользователя занято');
@@ -55,28 +61,32 @@ export default class RegistrationForm extends React.Component {
     }
 
     render() {
-        return (
-            <FormLayout>
-                <form className='form'  onSubmit = { this.handleSubmit } >
-                    <span className='form__title'>Реєстрація в системі</span>
-                    <label>
-                        Логін:
-                        <input className = "form__input" type='text' name='login' value={this.state.login} onChange = { this.handleChange } minLength='6' required />
-                    </label>
-                    <label>
-                        Пароль:
-                        <input className = "form__input" type='password' name='password' value={this.state.password} onChange = { this.handleChange } required />
-                    </label>
-                    <label>
-                        Підтвердження паролю:
-                        <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
-                    </label>
-                    <DepartmentSelect onChange={this.handleChange} value={this.state.department} />
-                    <div className = 'form__btn'>
-                        <input className = 'btn' type='submit' value='Зареєструватися' />
-                    </div>
-                </form>
-            </FormLayout>
-        )
+        const isRegistered = this.state.isRegistered;
+        if (!isRegistered) {
+            return (
+                <FormLayout>
+                    <form className='form'  onSubmit = { this.handleSubmit } >
+                        <span className='form__title'>Реєстрація в системі</span>
+                        <label>
+                            Логін:
+                            <input className = "form__input" type='text' name='login' value={this.state.login} onChange = { this.handleChange } minLength='6' required />
+                        </label>
+                        <label>
+                            Пароль:
+                            <input className = "form__input" type='password' name='password' value={this.state.password} onChange = { this.handleChange } required />
+                        </label>
+                        <label>
+                            Підтвердження паролю:
+                            <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
+                        </label>
+                        <DepartmentSelect onChange={this.handleChange} value={this.state.department} />
+                        <div className = 'form__btn'>
+                            <input className = 'btn' type='submit' value='Зареєструватися' />
+                        </div>
+                    </form>
+                </FormLayout>
+            )
+        };
+        return <Redirect to="/"/>
     }
 }
