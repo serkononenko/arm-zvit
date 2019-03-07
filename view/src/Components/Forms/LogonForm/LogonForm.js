@@ -1,10 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FormLayout from '../../../Layouts/FormLayout/FormLayout'
+import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
-import '../Forms.css'
+import '../Forms.css';
 
-export default class LogonForm extends React.Component {
+const LogonForm = (props) => {
+    return (
+        <form className='form'  onSubmit = { props.handleSubmit } >
+            <span className='form__title'>Вхід в систему</span>
+            <label>
+                Логін:
+                <input className = "form__input" type ='text' name ='login' value={props.login} onChange = { props.handleChange } minLength ='4' required />
+            </label>
+            <label>
+                Пароль:
+                <input className = "form__input" type ='password' name ='password' value={props.password} onChange = { props.handleChange } required />
+            </label>
+            <div className = 'form__btn'>
+                <input className = 'btn' type ='submit' value ='Вхід' />
+                <Link className = 'btn' to = '/registration' >Реєстрація</Link>
+            </div>
+        </form>
+    )
+}
+
+export default class LogonFormContainer extends React.Component {
     constructor(props) {
         super(props);
         
@@ -49,21 +69,12 @@ export default class LogonForm extends React.Component {
     render() {
         return (
             <FormLayout>
-                <form className='form'  onSubmit = { this.handleSubmit } >
-                    <span className='form__title'>Вхід в систему</span>
-                    <label>
-                        Логін:
-                        <input className = "form__input" type ='text' name ='login' value={this.state.login} onChange = { this.handleChange } minLength ='6' required />
-                    </label>
-                    <label>
-                        Пароль:
-                        <input className = "form__input" type ='password' name ='password' value={this.state.password} onChange = { this.handleChange } required />
-                    </label>
-                    <div className = 'form__btn'>
-                        <input className = 'btn' type ='submit' value ='Вхід' />
-                        <Link className = 'btn' to = '/registration' >Реєстрація</Link>
-                    </div>
-                </form>
+                <LogonForm 
+                    handleChange={this.handleChange} 
+                    handleSubmit={this.handleSubmit} 
+                    login={this.state.login}
+                    password={this.state.password}
+                />
             </FormLayout>
         )
     }
