@@ -1,3 +1,5 @@
+import { TOGGLE_LOGON, TOGGLE_LOGOUT } from './actionTypes';
+
 //Action creator
 export function toggleLogon(boolean) {
     return {
@@ -6,4 +8,9 @@ export function toggleLogon(boolean) {
     }
 };
 
-//const boundToogleLogon = (boolean) => dispatch(toggleLogon(boolean));
+export function toggleLogout(boolean) {
+    return {
+        type: TOGGLE_LOGOUT,
+        loggedIn: boolean
+    }
+};
