@@ -13,9 +13,7 @@ export default class DepartmentInput extends React.Component {
     }
 
     handleChange(e) {
-        const target = e.target;
-        const value = target.value;
-        const name = target.name;
+        const { value, name } = e.target;
         this.setState({
             [name]: value
         })
@@ -23,7 +21,8 @@ export default class DepartmentInput extends React.Component {
     }
 
     handleSubmit(e) {
-        const department = this.state.department;
+        e.preventDefault();
+        const { department } = this.state;
         const data = {
             department
         }
