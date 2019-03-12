@@ -1,10 +1,19 @@
 import { TOGGLE_LOGON, REQUEST_DEPARTMENT, RECEIVE_DEPARTMENT } from './actionTypes';
 
 //Action creator
-export function toggleLogon(boolean) {
+export function toggleLogon() {
+    localStorage.setItem('loggedIn', 'true');
     return {
         type: TOGGLE_LOGON,
-        payload: boolean
+        payload: true
+    }
+};
+
+export function toggleLogout() {
+    localStorage.clear();
+    return {
+        type: TOGGLE_LOGON,
+        payload: false
     }
 };
 

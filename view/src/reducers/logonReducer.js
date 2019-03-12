@@ -1,5 +1,5 @@
 const initialState = {
-    loggedIn: false
+    loggedIn: !!localStorage.getItem('loggedIn')
 };
 
 export default function logonReducer(state = initialState, action) {

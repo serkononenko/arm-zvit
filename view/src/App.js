@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleLogon, fetchDepartment } from './actions/actionCreators';
+import { toggleLogon, toggleLogout, fetchDepartment } from './actions/actionCreators';
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
@@ -56,8 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn: () => dispatch(toggleLogon(true)),
-        handleLogOut: () => dispatch(toggleLogon(false)),
+        handleLogIn: () => dispatch(toggleLogon()),
+        handleLogOut: () => dispatch(toggleLogout()),
         getDeparnmentList: () => dispatch(fetchDepartment())
     }
 }
