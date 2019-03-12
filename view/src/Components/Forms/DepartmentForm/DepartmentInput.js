@@ -27,7 +27,7 @@ export default class DepartmentInput extends React.Component {
         const data = {
             department
         }
-        fetch('/addDepartment', {
+        fetch('/department/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
