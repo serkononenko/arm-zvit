@@ -1,11 +1,11 @@
 import React from 'react';
-import { DepartmentContext } from '../../../Context';
 
 import './DepartmentSelect.css';
+import { connect } from 'react-redux';
 
-export default class DepartmentInput extends React.Component {
+class DepartmentInput extends React.Component {
     render() {
-        const departmentList = this.context;
+        const departmentList = this.props.department;
         const selectItems = departmentList.map((item) => 
             <option key={item._id} value={item.department}>
                 {item.department}
@@ -21,4 +21,11 @@ export default class DepartmentInput extends React.Component {
     }
 }
 
-DepartmentInput.contextType = DepartmentContext;
+const mapStateToProps = (state) => {
+    const { department } = state.department;
+    return {
+        department
+    }
+};
+
+export default connect(mapStateToProps)(DepartmentInput);
