@@ -1,6 +1,7 @@
 import React from 'react';
-import {  Route, Switch, Redirect } from 'react-router-dom';
-import { DepartmentContext } from './Context'
+import { Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleLogon, fetchDepartment } from './actions/actionCreators';
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
@@ -10,56 +11,23 @@ import MainPage from './Components/MainPage/MainPage'
 
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loggedIn: !!localStorage.getItem('loggedIn'),
-            departmentList: []
-        };
-
-        this.handleLogIn = this.handleLogIn.bind(this);
-        this.handleLogOut = this.handleLogOut.bind(this);
-        this.getDeparnmentList = this.getDeparnmentList.bind(this);
-    }
-
-    handleLogIn() {
-        this.setState({
-            loggedIn: true
-        });
-        localStorage.setItem('loggedIn', 'true');
-    }
-
-    handleLogOut() {
-        this.setState({
-            loggedIn: false
-        });
-        localStorage.removeItem('loggedIn');
-    }
-
-    getDeparnmentList(url) {
-        fetch(url, {method: 'GET'})
-            .then((res) => {
-                res.json().then((data) => {
-                    this.setState({
-                        departmentList: data
-                    })
-                })
-            });
     }
 
     componentDidMount() {
-        this.getDeparnmentList('/department/list');
+        this.props.getDeparnmentList();
     }
 
     render() {
-        const { loggedIn } = this.state;
+        const { loggedIn } = this.props;
         return (
-            <DepartmentContext.Provider value={this.state.departmentList}>
+            <React.Fragment>
                 <Header />
                 <Route exact path="/" render={() => (
                     loggedIn ? (
-                        <MainPage handleLogOut={this.handleLogOut}/>
+                        <MainPage handleLogOut={this.props.handleLogOut} />
                     ) : (
                         <Redirect to="/login"/>
                     )
@@ -68,15 +36,30 @@ export default class App extends React.Component {
                     loggedIn ? (
                         <Redirect to="/"/>
                     ) : (
-                        <LogonForm handleLogIn={this.handleLogIn}/>
+                        <LogonForm handleLogIn={this.props.handleLogIn} />
                     )
                 )}/>
                 <Route path="/registration" render={() => (
                     <RegistrationForm />
                 )}/>
-            </DepartmentContext.Provider>
+            </React.Fragment>
         )
-
     }
-
 };
+
+const mapStateToProps = (state) => {
+    const { loggedIn } = state.logon;
+    return {
+        loggedIn
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleLogIn: () => dispatch(toggleLogon(true)),
+        handleLogOut: () => dispatch(toggleLogon(false)),
+        getDeparnmentList: () => dispatch(fetchDepartment())
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
