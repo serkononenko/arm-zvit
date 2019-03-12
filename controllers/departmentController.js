@@ -8,6 +8,18 @@ const department_list = (req, res) => {
     });
 };
 
+const department_create = (req, res) => {
+    const { department } = req.body;
+    const departmentData = new Department({
+        department
+    });
+    departmentData.save((err) => {
+        if (err) console.log(err);
+        else res.status(200).send('OK');
+    })
+}
+
 module.exports = {
-    department_list
+    department_list,
+    department_create
 }

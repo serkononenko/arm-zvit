@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const reportBaseSchema = require('./reportbase')
 
 //create Shema
 const departmentListSchema = new mongoose.Schema({
-    department: String
+    department: String,
+    reports: [reportBaseSchema]
 });
 
 //create & export Model
