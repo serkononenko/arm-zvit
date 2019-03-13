@@ -44,7 +44,7 @@ async function login_user(req, res) {
         res.status(401).send('Unauthorized');
     } else {
         if (password === result.password) {
-            res.status(200).send('OK');
+            res.status(200).send(result);
         } else {
             res.status(403).send('Forbidden');
         }

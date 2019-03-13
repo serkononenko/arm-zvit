@@ -59,7 +59,9 @@ export default class LogonFormContainer extends React.Component {
             })
         }).then(function(res) {
             if (res.status == 200) {
-                that.props.handleLogIn();
+                res.json().then((data) => {
+                    that.props.handleLogIn(data.login);
+                })
             } else {
                 alert('Невірний логін або пароль');
             }

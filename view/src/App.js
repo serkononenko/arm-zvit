@@ -56,7 +56,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn: () => dispatch(toggleLogon()),
+        handleLogIn: (data) => dispatch(toggleLogon(data)),
         handleLogOut: () => dispatch(toggleLogout()),
         getDeparnmentList: () => dispatch(fetchDepartment())
     }
