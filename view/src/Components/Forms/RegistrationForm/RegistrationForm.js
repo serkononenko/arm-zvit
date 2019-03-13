@@ -67,21 +67,46 @@ export default class RegistrationForm extends React.Component {
                 <FormLayout>
                     <form className='form'  onSubmit = { this.handleSubmit } >
                         <span className='form__title'>Реєстрація в системі</span>
-                        <label>
-                            Логін:
-                            <input className = "form__input" type='text' name='login' value={this.state.login} onChange = { this.handleChange } minLength='6' required />
-                        </label>
-                        <label>
-                            Пароль:
-                            <input className = "form__input" type='password' name='password' value={this.state.password} onChange = { this.handleChange } required />
-                        </label>
-                        <label>
-                            Підтвердження паролю:
-                            <input className = "form__input" type='password' name='repassword' value={this.state.repassword} onChange = { this.handleChange } required />
-                        </label>
+                        <div className='form-group'>
+                            <label htmlFor='login'>Логін:</label>
+                            <input 
+                                className = 'form-control'
+                                id='login' 
+                                type='text' 
+                                name='login' 
+                                value={this.state.login} 
+                                onChange = { this.handleChange } 
+                                minLength='6' 
+                                required 
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <label htmlFor='password'>Пароль:</label>
+                            <input 
+                                className = 'form-control'
+                                id='password' 
+                                type='password' 
+                                name='password' 
+                                value={this.state.password} 
+                                onChange = { this.handleChange } 
+                                required 
+                            />
+                        </div>   
+                        <div className='form-group'>
+                            <label htmlFor='repassword'>Підтвердження паролю:</label>
+                            <input 
+                                className ='form-control'
+                                id='repassword' 
+                                type='password' 
+                                name='repassword' 
+                                value={this.state.repassword} 
+                                onChange ={this.handleChange} 
+                                required 
+                            />
+                        </div>
                         <DepartmentSelect onChange={this.handleChange} value={this.state.department} />
-                        <div className = 'form__btn'>
-                            <input className = 'btn' type='submit' value='Зареєструватися' />
+                        <div className ='form__btn'>
+                            <input className ='btn btn-outline-success btn-lg form__btn-item' type='submit' value='Зареєструватися' />
                         </div>
                     </form>
                 </FormLayout>

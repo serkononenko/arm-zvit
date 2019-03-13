@@ -13,37 +13,17 @@
     font-weight: bold;
 }
 
-.form__input {
-    display: block;
-    border: 2px solid green;
-    border-radius: 8px;
+.form-group {
+    width: 95%;
     margin: 10px auto;
-    width: 90%;
-    padding: 10px;
 }
 
 .form__btn {
-    width: 100%;
-    margin: 10px auto;
+    margin: 10px 0;
     display: flex;
     justify-content: space-around;
 }
 
-.btn {
-    display: block;
-    box-sizing: border-box;
+.form__btn-item {
     width: 40%;
-    height: 40px;
-    line-height: 40px;
-    border: 2px solid green;
-    border-radius: 8px;
-    background-color: #fff;
-    color: black;
-    text-decoration: none;
-    transition: 0.5s;
-}
-
-.btn:hover {
-    background-color: green;
-    color: #fff;
 }

@@ -8,17 +8,32 @@ const LogonForm = (props) => {
     return (
         <form className='form'  onSubmit = { props.handleSubmit } >
             <span className='form__title'>Вхід в систему</span>
-            <label>
-                Логін:
-                <input className = "form__input" type ='text' name ='login' value={props.login} onChange = { props.handleChange } minLength ='4' required />
-            </label>
-            <label>
-                Пароль:
-                <input className = "form__input" type ='password' name ='password' value={props.password} onChange = { props.handleChange } required />
-            </label>
+            <div className="form-group">
+                <label htmlFor='login'>Логін:</label>
+                <input 
+                    className ="form-control"
+                    id='login' 
+                    type ='text' name ='login' 
+                    value={props.login} 
+                    onChange = { props.handleChange } 
+                    minLength ='4' 
+                    required 
+                />
+            </div>
+            <div className='form-group'>
+                <label htmlFor='password'>Пароль:</label>
+                <input 
+                    className = "form-control"
+                    id='password' 
+                    type ='password' name ='password' 
+                    value={props.password} 
+                    onChange = { props.handleChange } 
+                    required 
+                />
+            </div>
             <div className = 'form__btn'>
-                <input className = 'btn' type ='submit' value ='Вхід' />
-                <Link className = 'btn' to = '/registration' >Реєстрація</Link>
+                <input className = 'btn btn-outline-success btn-lg form__btn-item' type ='submit' value ='Вхід' />
+                <Link className = 'btn btn-outline-success btn-lg form__btn-item' to = '/registration' >Реєстрація</Link>
             </div>
         </form>
     )

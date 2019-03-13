@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LoggonedUser from '../LoggonedUser/LoggonedUser';
+import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
 import './Header.css';
 import logo from './logo.png';
 
 function Header(props) {
     const elem = props.user ? (
-        <div className = 'header__loggoned-user'>
-            <LoggonedUser user={props.user}/>
-        </div>
+            <LinkToUserProfile user={props.user} className='btn btn-primary'/>
         ) : (
             <div></div>
         )

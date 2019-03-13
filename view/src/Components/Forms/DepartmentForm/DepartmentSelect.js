@@ -1,6 +1,4 @@
 import React from 'react';
-
-import './DepartmentSelect.css';
 import { connect } from 'react-redux';
 
 class DepartmentInput extends React.Component {
@@ -12,8 +10,14 @@ class DepartmentInput extends React.Component {
             </option>
         );
         return (
-            <div className='DepartmentSelect'>
-                <select className='DepartmentSelect__select' name='department' value={this.props.value} onChange={this.props.onChange}>
+            <div class="form-group">
+                <label htmlFor='department'>Виберіть свій підрозділ</label>
+                <select 
+                    className='form-control'
+                    id='department' 
+                    name='department' 
+                    value={this.props.value} 
+                    onChange={this.props.onChange}>
                     { selectItems }
                 </select>
             </div>

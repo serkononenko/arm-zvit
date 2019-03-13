@@ -30,7 +30,3 @@
 .header__title span {
     font-size: 24px;
 }
-
-.header__loggoned-user {
-    overflow: hidden;
-}

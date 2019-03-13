@@ -1,16 +1,16 @@
-.loggoned-user {
+.linkToUserProfile {
     display: block;
-    padding: 20px;
     border: 2px solid green;
     border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
     text-decoration: none;
     text-align: center;
     color: green;
-    cursor: pointer;
     transition: 0.5s;
 }
 
-.loggoned-user:hover {
+.linkToUserProfile:hover {
     background-color: green;
     color: white;
 }

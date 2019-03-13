@@ -1,6 +1,5 @@
 import React from 'react';
-
-import './UserList.css'
+import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
 
 export default class UserList extends React.Component {
     constructor(props) {
@@ -25,14 +24,16 @@ export default class UserList extends React.Component {
     render() {
         const { userlist } = this.state;
         const list = userlist.map((item) => 
-            <li key={item._id}>
-                {item.login}
-            </li>
+            <LinkToUserProfile 
+                key={item._id} 
+                user={item.login} 
+                className='list-group-item list-group-item-action'
+            />
         )
         return (
-            <ul className='UserList'>
+            <div className='list-group'>
                 {list}
-            </ul>
+            </div>
         )
     }
 }
