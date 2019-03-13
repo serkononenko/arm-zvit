@@ -13,11 +13,13 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static(__dirname + '/view/dist/'));
+app.use('/profile', express.static(__dirname + '/view/dist/'));
 
 app.use('/login', loginRouter);
 app.use('/registration', registrationRouter);
 app.use('/department', departmentRouter);
 app.use('/user', userRouter);
+app.use('/profile', userRouter);
 
 app.listen(3000, ()=> {
   console.log("ARM-ZVIT Server listening on 3000 port");
