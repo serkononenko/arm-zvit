@@ -1,0 +1,16 @@
+.loggoned-user {
+    display: block;
+    padding: 20px;
+    border: 2px solid green;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    color: green;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.loggoned-user:hover {
+    background-color: green;
+    color: white;
+}
