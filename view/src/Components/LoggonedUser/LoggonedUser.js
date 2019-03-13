@@ -5,7 +5,14 @@ import './LoggonedUser.css';
 
 const LoggonedUser = (props) => {
     return (
-        <Link to='#' className='loggoned-user'>{props.user}</Link>
+        <Link 
+            to={{
+                pathname: '/profile/',
+                search: props.user
+            }} 
+            className='loggoned-user'>
+            {props.user}
+        </Link>
     )
 };
 

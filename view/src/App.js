@@ -6,8 +6,8 @@ import { toggleLogon, toggleLogout, fetchDepartment } from './actions/actionCrea
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
 const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonForm'));
-
-import MainPage from './Components/MainPage/MainPage'
+const UserProfile = React.lazy(() => import('./Components/UserProfile/UserProfile'));
+const MainPage = React.lazy(() => import('./Components/MainPage/MainPage'));
 
 import './App.css';
 
@@ -41,6 +41,13 @@ class App extends React.Component {
                 )}/>
                 <Route path="/registration" render={() => (
                     <RegistrationForm />
+                )}/>
+                <Route path="/profile" render={() => (
+                    loggedIn ? (
+                        <UserProfile user={ loggedIn } />
+                    ) : (
+                        <Redirect to="/"/>
+                    )
                 )}/>
             </React.Fragment>
         )
