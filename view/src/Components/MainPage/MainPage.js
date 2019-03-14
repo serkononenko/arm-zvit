@@ -9,7 +9,6 @@ export default function MainPage(props) {
     return (
         <ContentLayout>
             <DepartmentInput />
-            <button onClick={props.handleLogOut}>Log Out</button>
             <UserList />
         </ContentLayout>
     )

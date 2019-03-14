@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import MainLayout from './Layouts/MainLayout/MainLayout';
 
 import './index.css';
+import '../../node_modules/jquery/dist/jquery';
+import '../../node_modules/bootstrap/dist/js/bootstrap.bundle';
 
 const App = React.lazy(() => import('./App'));
 

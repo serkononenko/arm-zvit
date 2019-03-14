@@ -24,10 +24,10 @@ class App extends React.Component {
         const { loggedIn } = this.props;
         return (
             <React.Fragment>
-                <Header />
+                <Header handleLogOut={this.props.handleLogOut} />
                 <Route exact path="/" render={() => (
                     loggedIn ? (
-                        <MainPage handleLogOut={this.props.handleLogOut} />
+                        <MainPage />
                     ) : (
                         <Redirect to="/login"/>
                     )

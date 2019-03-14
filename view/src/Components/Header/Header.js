@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
 import './Header.css';
@@ -6,19 +7,30 @@ import logo from './logo.png';
 
 function Header(props) {
     const elem = props.user ? (
-            <LinkToUserProfile user={props.user} className='btn btn-primary'/>
+            <div className='btn-group dropdown'>
+                <LinkToUserProfile user={props.user} className='btn btn-outline-success'/>
+                <button className='btn btn-outline-success dropdown-toggle dropdown-toggle-split'
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false"
+                >
+                    <span className='sr-only'>Toggle Dropdown</span>
+                </button>
+                <div className='dropdown-menu'>
+                    <button className='dropdown-item' onClick={props.handleLogOut}>Вихід</button>
+                </div>
+            </div>
         ) : (
             <div></div>
         )
     return (
-        <div className='header'>
-            <div className='header__logo-container'>
-                <img src = {logo} className = 'header__logo' />
-            </div>
-            <div className = 'header__title'>
-                <h1>АРМ - ЗВІТ</h1>
-                <span>Головне управління Пенсійного фонду України в Черкаській області</span>
-            </div>
+        <div className='navbar navbar-light header shadow-sm p-3 mb-5 bg-white'>
+            <Link to='/' className='navbar-brand header__logo logo'>
+                <img src={logo} className='img-fluid logo__img' />
+                <div className='logo__title'>
+                    <h1>АРМ - ЗВІТ v2.0</h1>
+                </div>
+            </Link>
             {elem}
         </div>
     )

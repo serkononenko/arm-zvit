@@ -1,32 +1,30 @@
 .header {
-    padding: 20px;
-    border-bottom: 1px solid green;
-    box-shadow: 0px 5px 10px 0px rgba(0, 128, 0, 1);
-    background-color: #fff;
+    width: 100%;
+    background-color: white;
+}
+
+.header__logo {
+    width: 80%;
+}
+
+.logo {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.header__logo-container {
-    max-width: 100px;;
+.logo__img {
+    max-width: 40px;
 }
 
-.header__logo {
-    width: 100%;
-}
 
-.header__title {
+.logo__title {
+    width: 70%;
+    overflow: hidden;
     text-align: center;
-    color: green;    
+    color: green;
 }
 
-.header__title h1 {
-    font-size: 40px;
-    font-weight: bold;
-    padding: 10px;
-}
-
-.header__title span {
-    font-size: 24px;
+.dropdown-menu {
+    min-width: 5rem;
 }

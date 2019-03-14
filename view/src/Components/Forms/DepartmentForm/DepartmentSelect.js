@@ -10,7 +10,7 @@ class DepartmentInput extends React.Component {
             </option>
         );
         return (
-            <div class="form-group">
+            <div className="form-group">
                 <label htmlFor='department'>Виберіть свій підрозділ</label>
                 <select 
                     className='form-control'
