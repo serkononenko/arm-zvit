@@ -1,9 +1,15 @@
 const express = require('express');
-const path = require('path');
+const dir = require('../dirname');
 const router = express.Router();
 
+const user_controller = require('../controllers/userController');
+
+router.use(express.static(dir + '/view/dist/'));
+
 router.get('/', (req, res) => {
-    console.log("GET");
-});
+    res.sendFile(path.dirname( __dirname) + '/view/dist/index.html');
+})
+
+router.get('/user', user_controller.user_profile);
 
 module.exports = router;
