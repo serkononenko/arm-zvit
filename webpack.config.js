@@ -7,7 +7,8 @@ module.exports = {
   entry: './view/src/index.js',
 
   devServer: {
-    contentBase: path.resolve(__dirname, './view/dist')
+    contentBase: path.resolve(__dirname, './view/dist'),
+    port: 3000
   },
 
   optimization: {
