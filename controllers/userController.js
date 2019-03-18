@@ -1,3 +1,6 @@
+const crypto = require('crypto');
+const salt = 'erondondon';
+
 const User = require('../models/userbase');
 
 const user_list = (req, res) => {
@@ -9,16 +12,32 @@ const user_list = (req, res) => {
     });
 };
 
+const user_profile = (req, res) => {
+    if (req.query) {
+        User.find({login: req.query.q}, (err, result) => {
+            if (err) console.error(err)
+            else {
+                res.send(result[0]);
+            };
+        })
+    } else {
+        res.redirect(200, '/');
+    }
+}
+
 const user_create = (req, res) => {
     const { login, password, department } = req.body;
-    const userData = new User({
-        login,
-        password,
-        department
-    });
-    userData.save((err) => {
-        if (err) console.error(err)
-        else res.status(200).send('OK');
+    crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
+        if (err) throw err;
+        const userData = new User({
+            login,
+            password: derivedKey.toString('hex'),
+            department
+        });
+        userData.save((err) => {
+            if (err) console.error(err)
+            else res.status(200).send('OK');
+        });
     });
 };
 
@@ -43,11 +62,15 @@ async function login_user(req, res) {
     if (!result) {
         res.status(401).send('Unauthorized');
     } else {
-        if (password === result.password) {
-            res.status(200).send(result);
-        } else {
-            res.status(403).send('Forbidden');
-        }
+        crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
+            if (err) throw err;
+            if (derivedKey.toString('hex') === result.password) {
+                req.session.user_id = result._id;
+                res.status(200).send(result);
+            } else {
+                res.status(403).send('Forbidden');
+            }
+        });
     }
 }
 
@@ -58,5 +81,6 @@ async function findUser(login) {
 module.exports = {
     login_user,
     register_user,
-    user_list
+    user_list,
+    user_profile
 }
