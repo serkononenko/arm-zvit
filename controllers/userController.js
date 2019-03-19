@@ -39,9 +39,13 @@ const user_profile = (req, res) => {
 }
 
 const user_profile_update = (req, res) => {
-    const writable = fs.createWriteStream(image(req.query.q));
-    req.pipe(writable);
-    res.status(200).send('OK');
+    if (req.get('Content-Type') === 'image/jpeg') {
+        const path = image(req.query.q);
+        const writable = fs.createWriteStream(path);
+        req.pipe(writable);
+        res.status(200).send('OK');
+    }
+
 }
 
 const user_create = (req, res) => {

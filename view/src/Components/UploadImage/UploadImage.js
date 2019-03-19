@@ -21,6 +21,9 @@ export default class UploadImge extends React.Component {
         label.data = image.name;
         fetch(url, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'image/jpeg'
+            },
             body: image
         }).then((res) => {
             console.log(res.status);
