@@ -3,7 +3,7 @@ const reportBaseSchema = require('./reportbase')
 
 //create Shema
 const departmentListSchema = new mongoose.Schema({
-    department: String,
+    name: String,
     reports: [reportBaseSchema]
 });
 

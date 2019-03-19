@@ -1,5 +1,5 @@
 const express = require('express');
-const dir = require('../dirname');
+const dir = require('../dirname').rootDir;
 const router = express.Router();
 
 const user_controller = require('../controllers/userController');
@@ -11,5 +11,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/user', user_controller.user_profile);
+
+router.post('/user', user_controller.user_profile_update);
 
 module.exports = router;

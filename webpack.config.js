@@ -7,8 +7,7 @@ module.exports = {
   entry: './view/src/index.js',
 
   devServer: {
-    contentBase: path.resolve(__dirname, './view/dist'),
-    port: 3000
+    contentBase: path.resolve(__dirname, './view/dist')
   },
 
   optimization: {
@@ -41,7 +40,7 @@ module.exports = {
           ]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -50,7 +49,7 @@ module.exports = {
             },
           },
         ],
-      },
+      }
     ]
   },
 

@@ -1,4 +1,10 @@
-import { TOGGLE_LOGON, REQUEST_DEPARTMENT, RECEIVE_DEPARTMENT } from './actionTypes';
+import { 
+    TOGGLE_LOGON, 
+    REQUEST_DEPARTMENT, 
+    RECEIVE_DEPARTMENT,
+    REQUEST_PROFILE,
+    RECEIVE_PROFILE
+} from './actionTypes';
 
 //Action creator
 export function toggleLogon(data) {
@@ -41,4 +47,31 @@ export function fetchDepartment() {
             })
         });
     }
-}
+};
+
+function requestProfile() {
+    return {
+        type: REQUEST_PROFILE
+    }
+};
+
+function receiveProfile(data) {
+    return {
+        type: RECEIVE_PROFILE,
+        payload: data,
+        receivedAt: Date.now()
+    }
+};
+
+export function fetchProfile(url) {
+    return function(dispatch) {
+        dispatch(requestProfile());
+        return fetch(url, {
+            method: 'GET'
+        }).then((res) => {
+            res.json().then((data) => {
+                dispatch(receiveProfile(data))
+            })
+        })
+    }
+};

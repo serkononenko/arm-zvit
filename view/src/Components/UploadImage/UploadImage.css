@@ -1,0 +1,18 @@
+.UploadImage__figure {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.UploadImage__figure-caption {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+}
+
+.UploadImage__label {
+    text-align: left;
+}

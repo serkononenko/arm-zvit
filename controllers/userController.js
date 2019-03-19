@@ -1,7 +1,9 @@
 const crypto = require('crypto');
+const fs = require('fs');
 const salt = 'erondondon';
-
+const image = require('../dirname').file;
 const User = require('../models/userbase');
+const Department = require('../models/departmentbase');
 
 const user_list = (req, res) => {
     User.find({}, (err, result) => {
@@ -14,15 +16,32 @@ const user_list = (req, res) => {
 
 const user_profile = (req, res) => {
     if (req.query) {
-        User.find({login: req.query.q}, (err, result) => {
+        User.findOne({login: req.query.q}, (err, result) => {
             if (err) console.error(err)
             else {
-                res.send(result[0]);
+                const { _id, login, image } = result;
+                const departmentId = result.department;
+                Department.findById(departmentId, (err, result) => {
+                    if (err) console.error(err);
+                    const department = result;
+                    res.send({
+                        _id,
+                        login,
+                        department,
+                        image
+                    });
+                })
             };
         })
     } else {
         res.redirect(200, '/');
     }
+}
+
+const user_profile_update = (req, res) => {
+    const writable = fs.createWriteStream(image(req.query.q));
+    req.pipe(writable);
+    res.status(200).send('OK');
 }
 
 const user_create = (req, res) => {
@@ -82,5 +101,6 @@ module.exports = {
     login_user,
     register_user,
     user_list,
-    user_profile
+    user_profile,
+    user_profile_update
 }

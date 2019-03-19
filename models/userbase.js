@@ -12,6 +12,7 @@ const userBaseSchema = new mongoose.Schema({
         ref: 'department',
         required: true
     },
+    image: String,
     isAdmin: Boolean
 });
 

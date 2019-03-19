@@ -6,7 +6,7 @@ class DepartmentInput extends React.Component {
         const departmentList = this.props.department;
         const selectItems = departmentList.map((item) => 
             <option key={item._id} value={item._id}>
-                {item.department}
+                {item.name}
             </option>
         );
         return (

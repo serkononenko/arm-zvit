@@ -11,7 +11,7 @@ const department_list = (req, res) => {
 const department_create = (req, res) => {
     const { department } = req.body;
     const departmentData = new Department({
-        department
+        name: department
     });
     departmentData.save((err) => {
         if (err) console.log(err);
@@ -19,7 +19,16 @@ const department_create = (req, res) => {
     })
 }
 
+const department_find_by_id = (req, res) => {
+    const { _id } = req.body;
+    Department.findById(_id, (err, result) => {
+        if (err) console.log(err);
+        res.send(result);
+    })
+};
+
 module.exports = {
     department_list,
-    department_create
+    department_create,
+    department_find_by_id
 }
