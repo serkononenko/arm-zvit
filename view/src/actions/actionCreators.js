@@ -62,7 +62,7 @@ function receiveProfile(data) {
     return {
         type: RECEIVE_PROFILE,
         payload: data,
-        receivedAt: new Date()
+        receivedAt: Date.now()
     }
 };
 

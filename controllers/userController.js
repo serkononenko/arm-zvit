@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const fs = require('fs');
 const salt = 'erondondon';
-const image = require('../dirname').file;
+const { file, pathToBase } = require('../dirname')
 const User = require('../models/userbase');
 const Department = require('../models/departmentbase');
 
@@ -40,12 +40,21 @@ const user_profile = (req, res) => {
 
 const user_profile_update = (req, res) => {
     if (req.get('Content-Type') === 'image/jpeg') {
-        const path = image(req.query.q);
-        const writable = fs.createWriteStream(path);
-        req.pipe(writable);
-        res.status(200).send('OK');
+        user_profile_update_image(req, res);
     }
 
+}
+
+const user_profile_update_image = (req, res) => {
+    const login = req.query.q;
+    const path = file(login);
+    const writable = fs.createWriteStream(path);
+    req.pipe(writable);
+    const q = User.where({login});
+    q.updateOne({image: pathToBase(path)}, (err) => {
+        if (err) console.error(err);
+        res.status(200).send('OK');
+    });
 }
 
 const user_create = (req, res) => {
