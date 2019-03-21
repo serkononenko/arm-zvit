@@ -10,3 +10,7 @@ export const REQUEST_PROFILE = 'REQUEST_PROFILE';
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+
+export const START_UPLOAD = 'START_UPLOAD';
+
+export const FINISH_UPLOAD = 'FINISH_UPLOAD';

@@ -1,5 +1,14 @@
+.Image__svg {
+    text-anchor: middle;
+    margin-bottom: 0;
+}
+
 .UploadImage__figure {
     position: relative;
+    margin-bottom: 0;
+}
+
+.UploadImage__image {
     margin-bottom: 0;
 }
 

@@ -4,7 +4,9 @@ import {
     RECEIVE_DEPARTMENT,
     REQUEST_PROFILE,
     RECEIVE_PROFILE,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+    START_UPLOAD,
+    FINISH_UPLOAD
 } from './actionTypes';
 
 //Action creator
@@ -80,5 +82,37 @@ export function fetchProfile(url) {
 export function clearUserProfile() {
     return {
         type: CLEAR_PROFILE
+    }
+};
+
+function startUpload() {
+    return {
+        type: START_UPLOAD,
+        payload: true
+    }
+}
+
+function finishUpload() {
+    return {
+        type: FINISH_UPLOAD,
+        payload: false
+    }
+}
+
+export function uploadProfileImage(url, image) {
+    return function(dispatch) {
+        dispatch(startUpload());
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'image/jpeg'
+            },
+            body: image
+        }).then((res) => {
+            dispatch(finishUpload());
+            if (res.status == 200) {
+                dispatch(fetchProfile(url));
+            }
+        })
     }
 }
