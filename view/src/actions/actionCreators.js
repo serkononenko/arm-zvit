@@ -3,7 +3,8 @@ import {
     REQUEST_DEPARTMENT, 
     RECEIVE_DEPARTMENT,
     REQUEST_PROFILE,
-    RECEIVE_PROFILE
+    RECEIVE_PROFILE,
+    CLEAR_PROFILE
 } from './actionTypes';
 
 //Action creator
@@ -59,7 +60,7 @@ function receiveProfile(data) {
     return {
         type: RECEIVE_PROFILE,
         payload: data,
-        receivedAt: Date.now()
+        receivedAt: new Date()
     }
 };
 
@@ -75,3 +76,9 @@ export function fetchProfile(url) {
         })
     }
 };
+
+export function clearUserProfile() {
+    return {
+        type: CLEAR_PROFILE
+    }
+}

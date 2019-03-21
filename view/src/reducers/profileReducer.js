@@ -12,8 +12,10 @@ export default function profileReducer(state = initialState, action) {
         case 'RECEIVE_PROFILE':
             return Object.assign({}, state, {
                 profile: action.payload,
-                lastUpdated: action.receiveAt
-            })
+                lastUpdated: action.receivedAt
+            });
+        case 'CLEAR_PROFILE':
+            return Object.assign({}, state, initialState)
         default: return state
     }
 }
