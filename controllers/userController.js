@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const fs = require('fs');
-const salt = 'erondondon';
+const JWT = require('../JWT');
 const { file, pathToBase } = require('../dirname')
 const User = require('../models/userbase');
 const Department = require('../models/departmentbase');
@@ -59,7 +59,7 @@ const user_profile_update_image = (req, res) => {
 
 const user_create = (req, res) => {
     const { login, password, department } = req.body;
-    crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
+    crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
         if (err) throw err;
         const userData = new User({
             login,
@@ -94,10 +94,19 @@ async function login_user(req, res) {
     if (!result) {
         res.status(401).send('Unauthorized');
     } else {
-        crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
+        crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
             if (err) throw err;
             if (derivedKey.toString('hex') === result.password) {
                 req.session.user_id = result._id;
+                const payload = {
+                    _id: result._id,
+                    login: result.login
+                };
+                const base64Header = JWT.createBase64(JWT.header);
+                const base64Payload = JWT.createBase64(JSON.stringify(payload));
+                const unsignedToken = base64Header+'.'+base64Payload;
+                const signature = JWT.createHmac(unsignedToken);
+                const token = base64Header+'.'+base64Payload+'.'+signature;
                 res.status(200).send(result);
             } else {
                 res.status(403).send('Forbidden');
