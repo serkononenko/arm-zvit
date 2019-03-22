@@ -1,0 +1,16 @@
+.Footer {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-110%);
+    width: 100%;
+
+}
+
+.Footer .col {
+    height: 50px;
+    text-align: center;
+}
+
+.Footer .img-fluid {
+    max-height: 100%;
+}

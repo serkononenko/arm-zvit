@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { toggleLogon, toggleLogout, fetchDepartment } from './actions/actionCreators';
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
+const Footer = React.lazy(() => import('./Components/Footer/Footer'));
 const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
 const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonForm'));
 const UserProfile = React.lazy(() => import('./Components/UserProfile/UserProfile'));
@@ -49,6 +50,7 @@ class App extends React.Component {
                         <Redirect to="/"/>
                     )
                 )}/>
+                <Footer />
             </React.Fragment>
         )
     }
