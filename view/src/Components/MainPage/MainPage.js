@@ -10,6 +10,7 @@ export default function MainPage(props) {
         <ContentLayout>
             <DepartmentInput />
             <UserList />
+            <DepartmentList />
         </ContentLayout>
     )
 }

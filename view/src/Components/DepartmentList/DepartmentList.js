@@ -1,61 +1,46 @@
 import React from 'react';
-import './DepartmentList.css';
+import { connect } from 'react-redux';
 
-const departmentUl = [
-    {department: 'Риба', departmentReport: [
-        'Карась', 'Товстолоб', 'Щука'
-    ], _id: 1},
-    {department: "М'ясо", departmentReport: [
-        'Курка', 'Свинина', 'Телятина'
-    ], _id: 2},
-    {department: 'Фрукт', departmentReport: [
-        'Вишня', 'Яблуко', 'Груша'
-    ], _id: 3},
-    {department: 'Овоч', departmentReport: [
-        'Морква', 'Помідор', 'Огірок'
-    ], _id: 4}
-];
-
-export default class DepartmentList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            departmentList: []
-        };
-    }
-
-/*    getDeparnmentList(url) {
-        fetch(url, {method: 'GET'})
-            .then((res) => {
-                res.json().then((data) => {
-                    this.setState({
-                        departmentList: data
-                    })
-                })
-            });
-    }
-
-    componentDidMount() {
-        this.getDeparnmentList('/getDepartmentList');
-    }
-*/
-    render() {
-//        const departmentList = this.state.departmentList.map((item) => <li>{item.department}</li>)
-    const departmentList = departmentUl.map((item, index) => {
-        const subList = item.departmentReport.map((subItem, index2) => <a href='#' key={index2}>{subItem}</a>)
+const DepartmentList = (props) => {
+    const department = props.department.map((item) => {
         return (
-            <li key={index} id={item._id} className='DepartmentList__item'>
-                <a href={'#'+item._id} className='DepartmentList__link'>{item.department}</a>
-                <div className='DepartmentList__sublist'>
-                    {subList}
+            <div className="card" key={item._id}>
+                <div className="card-header" id={"heading"+item._id}>
+                    <h2 className="mb-0">
+                        <button 
+                            className="btn btn-link" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target={"#collapse"+item._id} 
+                            aria-expanded="true" 
+                            aria-controls={"collapse"+item._id}
+                        >
+                            {item.name}
+                        </button>
+                    </h2>
                 </div>
-            </li>
+
+                <div id={"collapse"+item._id} className="collapse" aria-labelledby={"heading"+item._id} data-parent="#accordion">
+                    <div className="card-body">
+                        {item._id}
+                    </div>
+                </div>
+            </div>
         )
-    })
-        return (
-            <ul className='DepartmentList'>
-                {departmentList}
-            </ul>
-        )
+    });
+
+    return (
+        <div className='accordion' id='accordion'>
+            {department}
+        </div>
+    )
+};
+
+const mapStateToProps = (state) => {
+    const { department } = state.department
+    return {
+        department
     }
 }
+
+export default connect(mapStateToProps)(DepartmentList);
