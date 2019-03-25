@@ -13,14 +13,18 @@ const JWT = {
     generate: function(payload) {
         const that = this;
         const base64Header = that.createBase64(that.header);
-        const base64Payload = that.createBase64(JSON.stringify(payload));
+        const base64Payload = that.createBase64(JSON.stringify(
+            Object.assign({}, {
+                iat: Date.now(),
+                exp: Date.now()+1000*60*5
+            }, payload)
+        ));
         const signature = that.createHmac(base64Header+'.'+base64Payload);
         return base64Header+'.'+base64Payload+'.'+signature;
     },
     salt: 'erondondon',
     digest: 'sha256',
     header: JSON.stringify({alg: 'HS256', typ: 'JWT'})
-
 }
 
 module.exports = JWT;
