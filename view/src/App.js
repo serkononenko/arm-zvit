@@ -10,8 +10,6 @@ const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonFor
 const UserProfile = React.lazy(() => import('./Components/UserProfile/UserProfile'));
 const MainPage = React.lazy(() => import('./Components/MainPage/MainPage'));
 
-import './App.css';
-
 class App extends React.Component {
     constructor(props) {
         super(props);
