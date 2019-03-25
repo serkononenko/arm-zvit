@@ -102,11 +102,8 @@ async function login_user(req, res) {
                     _id: result._id,
                     login: result.login
                 };
-                const base64Header = JWT.createBase64(JWT.header);
-                const base64Payload = JWT.createBase64(JSON.stringify(payload));
-                const unsignedToken = base64Header+'.'+base64Payload;
-                const signature = JWT.createHmac(unsignedToken);
-                const token = base64Header+'.'+base64Payload+'.'+signature;
+                const token = JWT.generate(payload);
+                console.log(token);
                 res.status(200).send(result);
             } else {
                 res.status(403).send('Forbidden');
