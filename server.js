@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const createDb = require('./dbSetting');
@@ -13,15 +11,6 @@ const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
 
 createDb();
-
-app.use(session({
-  secret: 'foo',
-  saveUninitialized: false,
-  resave: false, 
-  store: new MongoStore({
-    url: 'mongodb://localhost/arm-zvit'
-  })
-}));
 
 app.use(helmet());
 app.use(bodyParser.json()); // for parsing application/json

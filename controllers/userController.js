@@ -97,7 +97,6 @@ async function login_user(req, res) {
         crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
             if (err) throw err;
             if (derivedKey.toString('hex') === result.password) {
-                req.session.user_id = result._id;
                 const payload = {
                     _id: result._id,
                     login: result.login
