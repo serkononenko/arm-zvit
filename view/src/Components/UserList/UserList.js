@@ -11,7 +11,7 @@ export default class UserList extends React.Component {
 
     componentDidMount() {
         const headers = new Headers({
-            'Authorization': 'Bearer YWxhZGRpbjpvcGVuc2VzYW1l'
+            'Authorization': 'Bearer '+localStorage.getItem('accessToken')
         });
         fetch('/user/list', {
             method: 'GET',
