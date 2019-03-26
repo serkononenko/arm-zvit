@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
 import './Header.css';
 import logo from './logo.png';
@@ -8,7 +7,7 @@ import logo from './logo.png';
 function Header(props) {
     const elem = props.user ? (
             <div className='btn-group dropdown'>
-                <LinkToUserProfile user={props.user} className='btn btn-outline-success'/>
+                <LinkToUserProfile user={props.user.login} className='btn btn-outline-success'/>
                 <button className='btn btn-outline-success dropdown-toggle dropdown-toggle-split'
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
@@ -21,7 +20,7 @@ function Header(props) {
                 </div>
             </div>
         ) : (
-            <div></div>
+            null
         )
     return (
         <div className='navbar navbar-light header shadow-sm p-3 mb-5 bg-white'>
@@ -36,12 +35,5 @@ function Header(props) {
     )
 }
 
-const mapStateToProps = (state) => {
-    const user = state.logon.loggedIn;
-    return {
-        user
-    }
-}
-
-export default connect(mapStateToProps)(Header);
+export default Header;
 

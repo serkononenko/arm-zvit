@@ -10,11 +10,13 @@ import {
 } from './actionTypes';
 
 //Action creator
-export function toggleLogon(data) {
+export function toggleLogon(token) {
+    localStorage.setItem('accessToken', token);
+    const data = atob(token.split('.')[1]);
     localStorage.setItem('loggedIn', data);
     return {
         type: TOGGLE_LOGON,
-        payload: data
+        payload: JSON.parse(data)
     }
 };
 

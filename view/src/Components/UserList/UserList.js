@@ -10,7 +10,13 @@ export default class UserList extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/user/list')
+        const headers = new Headers({
+            'Authorization': 'Bearer YWxhZGRpbjpvcGVuc2VzYW1l'
+        });
+        fetch('/user/list', {
+            method: 'GET',
+            headers
+        })
             .then((res) => {
                 res.json()
                     .then((data) => {

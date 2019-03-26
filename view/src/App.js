@@ -23,7 +23,7 @@ class App extends React.Component {
         const { loggedIn } = this.props;
         return (
             <React.Fragment>
-                <Header handleLogOut={this.props.handleLogOut} />
+                <Header handleLogOut={this.props.handleLogOut} user={loggedIn}/>
                 <Route exact path="/" render={() => (
                     loggedIn ? (
                         <MainPage />
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn: (data) => dispatch(toggleLogon(data)),
+        handleLogIn: (token) => dispatch(toggleLogon(token)),
         handleLogOut: () => dispatch(toggleLogout()),
         getDeparnmentList: () => dispatch(fetchDepartment())
     }
