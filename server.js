@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const accessControl = require('./middleware/accessControl');
 const createDb = require('./utils/dbSetting');
 
 const loginRouter = require('./routes/login');
@@ -17,6 +18,8 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static(__dirname + '/view/dist/'));
+
+app.use(accessControl);
 
 app.use('/login', loginRouter);
 app.use('/registration', registrationRouter);
