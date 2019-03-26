@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const fs = require('fs');
-const JWT = require('../JWT');
+const JWT = require('../utils/JWT');
 const { file, pathToBase } = require('../dirname')
 const User = require('../models/userbase');
 const Department = require('../models/departmentbase');
@@ -101,7 +101,7 @@ async function login_user(req, res) {
                     _id: result._id,
                     login: result.login
                 };
-                const token = JWT.generate(payload);
+                const token = JWT.sign(payload);
                 console.log(token);
                 res.status(200).send(result);
             } else {

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const createDb = require('./dbSetting');
+const createDb = require('./utils/dbSetting');
 
 const loginRouter = require('./routes/login');
 const registrationRouter = require('./routes/registration');
