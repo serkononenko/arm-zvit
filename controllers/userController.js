@@ -103,7 +103,7 @@ async function login_user(req, res) {
                 };
                 const token = JWT.sign(payload);
                 console.log(token);
-                res.status(200).send(result);
+                res.status(200).send(token);
             } else {
                 res.status(403).send('Forbidden');
             }
