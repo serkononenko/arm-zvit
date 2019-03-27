@@ -15,14 +15,14 @@ const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
 
 createDb();
-const logStream = fs.createWriteStream(path.join(__dirname, 'log.log'), {flags: 'a'});
+const logStream = fs.createWriteStream(path.join(__dirname, './logs/', 'main-log.log'), {flags: 'a'});
 
 app.use(helmet());
 app.use(morgan('short', {stream: logStream}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.use(express.static(__dirname + '/view/dist/'));
+app.use(express.static(path.join(__dirname, '/view/dist/')));
 
 app.use(accessControl);
 
