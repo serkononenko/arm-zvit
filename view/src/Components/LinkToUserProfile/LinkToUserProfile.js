@@ -8,10 +8,10 @@ const LinkToUserProfile = (props) => {
         <Link 
             to={{
                 pathname: '/profile/user',
-                search: 'q='+props.user
+                search: '?id='+props.user._id
             }} 
             className={props.className}>
-            {props.user}
+            {props.user.login}
         </Link>
     )
 };

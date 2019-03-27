@@ -32,7 +32,7 @@ export default class UserList extends React.Component {
         const list = userlist.map((item) => 
             <LinkToUserProfile 
                 key={item._id} 
-                user={item.login} 
+                user={item} 
                 className='list-group-item list-group-item-action'
             />
         )

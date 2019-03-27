@@ -15,8 +15,9 @@ const user_list = (req, res) => {
 };
 
 const user_profile = (req, res) => {
+    console.log(req.query);
     if (req.query) {
-        User.findOne({login: req.query.q}, (err, result) => {
+        User.findById(req.query.id, (err, result) => {
             if (err) console.error(err)
             else {
                 const { _id, login, image } = result;
@@ -46,11 +47,11 @@ const user_profile_update = (req, res) => {
 }
 
 const user_profile_update_image = (req, res) => {
-    const login = req.query.q;
-    const path = file(login);
+    const { id } = req.query;
+    const path = file(id);
     const writable = fs.createWriteStream(path);
     req.pipe(writable);
-    const q = User.where({login});
+    const q = User.where({_id: id});
     q.updateOne({image: pathToBase(path)}, (err) => {
         if (err) console.error(err);
         res.status(200).send('OK');

@@ -7,7 +7,7 @@ import logo from './logo.png';
 function Header(props) {
     const elem = props.user ? (
             <div className='btn-group dropdown'>
-                <LinkToUserProfile user={props.user.login} className='btn btn-outline-success'/>
+                <LinkToUserProfile user={props.user} className='btn btn-outline-success'/>
                 <button className='btn btn-outline-success dropdown-toggle dropdown-toggle-split'
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
