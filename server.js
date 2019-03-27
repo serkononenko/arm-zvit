@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const fs= require('fs');
+const path = require('path')
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const accessControl = require('./middleware/accessControl');
 const createDb = require('./utils/dbSetting');
 
@@ -12,8 +15,10 @@ const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
 
 createDb();
+const logStream = fs.createWriteStream(path.join(__dirname, 'log.log'), {flags: 'a'});
 
 app.use(helmet());
+app.use(morgan('short', {stream: logStream}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
