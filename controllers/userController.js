@@ -20,16 +20,17 @@ const user_profile = (req, res) => {
         User.findById(req.query.id, (err, result) => {
             if (err) console.error(err)
             else {
-                const { _id, login, image } = result;
+                const { _id, login, image, isAdmin } = result;
                 const departmentId = result.department;
                 Department.findById(departmentId, (err, result) => {
                     if (err) console.error(err);
-                    const department = result;
+                    const department = result.name;
                     res.send({
                         _id,
                         login,
                         department,
-                        image
+                        image,
+                        isAdmin
                     });
                 })
             };
@@ -98,9 +99,11 @@ async function login_user(req, res) {
         crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
             if (err) throw err;
             if (derivedKey.toString('hex') === result.password) {
+                const { _id, login, isAdmin } = result;
                 const payload = {
-                    _id: result._id,
-                    login: result.login
+                    _id,
+                    login,
+                    isAdmin
                 };
                 const token = JWT.sign(payload);
                 res.status(200).send(token);

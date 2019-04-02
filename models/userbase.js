@@ -13,7 +13,10 @@ const userBaseSchema = new mongoose.Schema({
         required: true
     },
     image: String,
-    isAdmin: Boolean
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
 });
 
 //create & export Model
