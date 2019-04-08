@@ -26,7 +26,7 @@ class UploadImge extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        const url = location.pathname+location.search;
+        const { url } = this.props.match;
         const image = this.fileInput.current.files[0];
         let label = this.fileInput.current.labels[0].childNodes[0];
         label.data = image.name;

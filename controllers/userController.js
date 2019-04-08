@@ -15,9 +15,9 @@ const user_list = (req, res) => {
 };
 
 const user_profile = (req, res) => {
-    console.log(req.query);
-    if (req.query) {
-        User.findById(req.query.id, (err, result) => {
+    const id = req.params[0]
+    if (id) {
+        User.findById(id, (err, result) => {
             if (err) console.error(err)
             else {
                 const { _id, login, image, isAdmin } = result;
@@ -48,7 +48,7 @@ const user_profile_update = (req, res) => {
 }
 
 const user_profile_update_image = (req, res) => {
-    const { id } = req.query;
+    const id = req.params[0];
     const path = file(id);
     const writable = fs.createWriteStream(path);
     req.pipe(writable);

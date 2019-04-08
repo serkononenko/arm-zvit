@@ -15,8 +15,8 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.url);
-//            this.props.getUserProfile(url);
+        const { url } = this.props.match;
+            this.props.getUserProfile(url);
     }
 
     componentWillUnmount() {
@@ -33,7 +33,7 @@ class UserProfile extends React.Component {
                 <div className='card mb-3'>
                     <div className='row no-gutters'>
                         <div className='col-md-4'>
-                            <UploadImage />
+                            <UploadImage match={match}/>
                         </div>
                         <div className='col-md-8'>
                             <div className='card-body'>
