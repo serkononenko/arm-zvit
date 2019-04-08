@@ -1,14 +1,24 @@
 import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleLogon, toggleLogout, fetchDepartment } from './actions/actionCreators';
+import { toggleLogout, fetchDepartment } from './actions/actionCreators';
+import routes from './routes';
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const Footer = React.lazy(() => import('./Components/Footer/Footer'));
-const RegistrationForm = React.lazy(() => import('./Components/Forms/RegistrationForm/RegistrationForm'));
-const LogonForm = React.lazy(() => import('./Components/Forms/LogonForm/LogonForm'));
-const UserProfile = React.lazy(() => import('./Components/UserProfile/UserProfile'));
-const MainPage = React.lazy(() => import('./Components/MainPage/MainPage'));
+
+const SimpleRoute = (route) => {
+    return (
+        <Route 
+            path={route.path}
+            render={
+                props => (
+                    <route.component {...props} />
+                )
+            }
+        />
+    )
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -21,33 +31,15 @@ class App extends React.Component {
 
     render() {
         const { loggedIn } = this.props;
+        console.log(loggedIn);
         return (
             <React.Fragment>
                 <Header handleLogOut={this.props.handleLogOut} user={loggedIn}/>
-                <Route exact path="/" render={() => (
-                    loggedIn ? (
-                        <MainPage />
-                    ) : (
-                        <Redirect to="/login"/>
+                {routes(loggedIn).map((item, i) => {
+                    return (
+                        <SimpleRoute key={i} exact={item.isExact} {...item} />
                     )
-                )}/>
-                <Route path="/login" render={() => (
-                    loggedIn ? (
-                        <Redirect to="/"/>
-                    ) : (
-                        <LogonForm handleLogIn={this.props.handleLogIn} />
-                    )
-                )}/>
-                <Route path="/registration" render={() => (
-                    <RegistrationForm />
-                )}/>
-                <Route path="/profile" render={() => (
-                    loggedIn ? (
-                        <UserProfile user={ loggedIn } />
-                    ) : (
-                        <Redirect to="/"/>
-                    )
-                )}/>
+                })}
                 <Footer />
             </React.Fragment>
         )
@@ -63,7 +55,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn: (token) => dispatch(toggleLogon(token)),
         handleLogOut: () => dispatch(toggleLogout()),
         getDeparnmentList: () => dispatch(fetchDepartment())
     }
