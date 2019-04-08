@@ -7,19 +7,6 @@ import routes from './routes';
 const Header = React.lazy(() => import('./Components/Header/Header'));
 const Footer = React.lazy(() => import('./Components/Footer/Footer'));
 
-const SimpleRoute = (route) => {
-    return (
-        <Route 
-            path={route.path}
-            render={
-                props => (
-                    <route.component {...props} />
-                )
-            }
-        />
-    )
-}
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -31,13 +18,21 @@ class App extends React.Component {
 
     render() {
         const { loggedIn } = this.props;
-        console.log(loggedIn);
         return (
             <React.Fragment>
                 <Header handleLogOut={this.props.handleLogOut} user={loggedIn}/>
                 {routes(loggedIn).map((item, i) => {
                     return (
-                        <SimpleRoute key={i} exact={item.isExact} {...item} />
+                        <Route 
+                            key={i} 
+                            exact={item.isExact} 
+                            path={item.path}
+                            render={
+                                props => (
+                                    <item.component {...props} />
+                                )
+                            }
+                        />
                     )
                 })}
                 <Footer />

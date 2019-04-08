@@ -24,12 +24,8 @@ const routes = (profile) => {
         return [
             {
                 path: '/',
-                component: MainPage,
+                component: LogonForm,
                 isExact: true
-            },
-            {
-                path: '/login',
-                component: LogonForm
             },
             {
                 path: '/registration',

@@ -61,7 +61,7 @@ export default class RegistrationForm extends React.Component {
     }
 
     render() {
-        const isRegistered = this.state.isRegistered;
+        const { isRegistered } = this.state;
         if (!isRegistered) {
             return (
                 <FormLayout>

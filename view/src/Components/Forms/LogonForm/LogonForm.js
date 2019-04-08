@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleLogon } from '../../../actions/actionCreators';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
 import '../Forms.css';
@@ -47,7 +47,8 @@ class LogonFormContainer extends React.Component {
         
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            redirectToReferrer: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,7 +79,10 @@ class LogonFormContainer extends React.Component {
             if (res.status == 200) {
                 res.text().then((token) => {
                     that.props.handleLogIn(token);
-                })
+                });
+                that.setState({
+                    redirectToReferrer: true
+                });
             } else {
                 alert('Невірний логін або пароль');
             }
@@ -86,6 +90,11 @@ class LogonFormContainer extends React.Component {
     }
 
     render() {
+        let { from } = this.props.location.state || { from: { pathname: "/" } };
+        let { redirectToReferrer } = this.state;
+    
+        if (redirectToReferrer) return <Redirect to={from} />;
+
         return (
             <FormLayout>
                 <LogonForm 
