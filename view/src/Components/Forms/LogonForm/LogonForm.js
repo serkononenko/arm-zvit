@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleLogon } from '../../../actions/actionCreators';
 import { Link } from 'react-router-dom';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
@@ -39,7 +41,7 @@ const LogonForm = (props) => {
     )
 }
 
-export default class LogonFormContainer extends React.Component {
+class LogonFormContainer extends React.Component {
     constructor(props) {
         super(props);
         
@@ -95,4 +97,12 @@ export default class LogonFormContainer extends React.Component {
             </FormLayout>
         )
     }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleLogIn: (token) => dispatch(toggleLogon(token))
+    }
 }
+
+export default connect(null, mapDispatchToProps)(LogonFormContainer);
