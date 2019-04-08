@@ -1,0 +1,72 @@
+.link-login-change {
+    position: relative;
+    text-align: center;
+}
+
+.link-login-change::before {
+    position: absolute;
+    content: 'Логін';
+    color: #5f6368;
+    left: 10px;
+}
+
+.link-login-change::after {
+    position: absolute;
+    content: '❱';
+    color: #5f6368;
+    right: 10px;
+}
+
+.link-department-change {
+    text-align: center;
+}
+
+.link-department-change::before {
+    position: absolute;
+    content: 'Відділ';
+    color: #5f6368;
+    left: 10px;
+}
+
+.link-department-change::after {
+    position: absolute;
+    content: '❱';
+    color: #5f6368;
+    right: 10px;
+}
+
+.link-role-change {
+    text-align: center;
+}
+
+.link-role-change::before {
+    position: absolute;
+    content: 'Роль користувача';
+    color: #5f6368;
+    left: 10px;
+}
+
+.link-role-change::after {
+    position: absolute;
+    content: '❱';
+    color: #5f6368;
+    right: 10px;
+}
+
+.link-password-change {
+    text-align: center;
+}
+
+.link-password-change::before {
+    position: absolute;
+    content: 'Пароль';
+    color: #5f6368;
+    left: 10px;
+}
+
+.link-password-change::after {
+    position: absolute;
+    content: '❱';
+    color: #5f6368;
+    right: 10px;
+}

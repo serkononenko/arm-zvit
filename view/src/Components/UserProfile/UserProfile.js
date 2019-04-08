@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import UserUpdateRole from '../UserUpdateRole/UserUpdateRole';
 import './UserProfile.css';
 import { connect } from 'react-redux';
 import { fetchProfile, clearUserProfile } from '../../actions/actionCreators';
@@ -8,11 +10,13 @@ const UploadImage = React.lazy(() => import('../UploadImage/UploadImage'));
 const LoadIndicator = React.lazy(() => import('../LoadIndicator/LoadIndicator'));
 
 class UserProfile extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
-        if(location.search) {
-            const url = location.pathname+location.search;
-            this.props.getUserProfile(url);
-        }
+        console.log(this.props.match.url);
+//            this.props.getUserProfile(url);
     }
 
     componentWillUnmount() {
@@ -20,7 +24,7 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        const { profile } = this.props;
+        const { profile, match } = this.props;
         if (!profile.login) {
             return <LoadIndicator />
         }
@@ -33,8 +37,18 @@ class UserProfile extends React.Component {
                         </div>
                         <div className='col-md-8'>
                             <div className='card-body'>
-                                <h5 className='card-title'>{profile.login}</h5>
-                                {profile.department.name}
+                                <h5 className='card-title'>Особисті дані</h5>
+                                <div className='list-group'>
+                                    <Link className='list-group-item list-group-item-action link-login-change' to='#'>{profile.login}</Link>
+                                    <Link className='list-group-item list-group-item-action link-department-change' to='#'>{profile.department}</Link>
+                                    <Link className='list-group-item list-group-item-action link-role-change' to={`${match.url}/role`}>{profile.isAdmin ? 'Адміністратор' : 'Користувач'}</Link>
+                                    <Link className='list-group-item list-group-item-action link-password-change' to='#'>******</Link>
+
+                                    <Route 
+                                        path={`${match.url}/role`}
+                                        render={() => <UserUpdateRole role={profile.isAdmin}/>}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
