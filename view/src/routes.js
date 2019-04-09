@@ -11,8 +11,13 @@ const routes = (profile) => {
         return [
             {
                 path: '/',
-                component: profile.isAdmin ? AdminPage: MainPage,
+                component: MainPage,
                 isExact: true
+            },
+            {
+                path: '/administrator',
+                component: AdminPage,
+                isExact: false
             },
             {
                 path: '/profile/:_id',

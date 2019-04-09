@@ -6,7 +6,8 @@ import './LinkToUserProfile.css';
 const LinkToUserProfile = (props) => {
     return (
         <Link 
-            to={`profile/${props.user._id}`} 
+            to={`/profile/${props.user._id}`}
+            replace 
             className={props.className}>
             {props.user.login}
         </Link>
