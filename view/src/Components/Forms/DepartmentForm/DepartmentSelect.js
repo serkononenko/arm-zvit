@@ -21,7 +21,7 @@ class DepartmentInput extends React.Component {
                     { selectItems }
                 </select>
             </div>
-        )
+        );
     }
 }
 
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
     const { department } = state.department;
     return {
         department
-    }
+    };
 };
 
 export default connect(mapStateToProps)(DepartmentInput);

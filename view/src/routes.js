@@ -24,7 +24,7 @@ const routes = (profile) => {
                 component: UserProfile,
                 isExact: false
             }
-        ]
+        ];
     } else {
         return [
             {
@@ -36,8 +36,8 @@ const routes = (profile) => {
                 path: '/registration',
                 component: RegistrationForm
             }
-        ]
+        ];
     }
 };
 
-export default routes
+export default routes;

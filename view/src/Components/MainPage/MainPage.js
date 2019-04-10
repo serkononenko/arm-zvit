@@ -1,18 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import ContentLayout from '../../Layouts/ContentLayout/ContentLayout';
-import DepartmentInput from '../Forms/DepartmentForm/DepartmentInput';
-import DepartmentList from '../DepartmentList/DepartmentList';
-import UserList from '../UserList/UserList';
-import ImportReport from '../ImportReport/ImportReport';
-
-export default function MainPage(props) {
+const MainPage = ({loggedIn}) => {
+    if (loggedIn.isAdmin) return <Redirect to='/administrator' />;
     return (
-        <ContentLayout>
-            <DepartmentInput />
-            <ImportReport />
-            <UserList />
-            <DepartmentList />
-        </ContentLayout>
-    )
-}
+        <h1>Hello world</h1>
+    );
+};
+
+MainPage.propTypes = {
+    loggedIn: PropTypes.object
+};
+
+const mapStateToProps = (state) => {
+    const { loggedIn } = state.logon;
+    return {
+        loggedIn
+    };
+};
+
+export default connect(mapStateToProps)(MainPage);

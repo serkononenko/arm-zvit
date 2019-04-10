@@ -38,8 +38,8 @@ const LogonForm = (props) => {
                 <Link className = 'btn btn-outline-success btn-lg form__btn-item' to = '/registration' >Реєстрація</Link>
             </div>
         </form>
-    )
-}
+    );
+};
 
 class LogonFormContainer extends React.Component {
     constructor(props) {
@@ -58,7 +58,7 @@ class LogonFormContainer extends React.Component {
         const {name, value} = event.target;
         this.setState({
             [name]: value
-        })
+        });
     }
 
     handleSubmit(event) {
@@ -86,11 +86,11 @@ class LogonFormContainer extends React.Component {
             } else {
                 alert('Невірний логін або пароль');
             }
-        })
+        });
     }
 
     render() {
-        let { from } = this.props.location.state || { from: { pathname: "/" } };
+        let { from } = this.props.location.state || { from: { pathname: '/' } };
         let { redirectToReferrer } = this.state;
     
         if (redirectToReferrer) return <Redirect to={from} />;
@@ -104,14 +104,14 @@ class LogonFormContainer extends React.Component {
                     password={this.state.password}
                 />
             </FormLayout>
-        )
+        );
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleLogIn: (token) => dispatch(toggleLogon(token))
-    }
-}
+    };
+};
 
 export default connect(null, mapDispatchToProps)(LogonFormContainer);

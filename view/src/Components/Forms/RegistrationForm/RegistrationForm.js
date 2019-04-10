@@ -44,19 +44,19 @@ export default class RegistrationForm extends React.Component {
                 body: JSON.stringify(data)
             }).then(function(res) {
                 switch (res.status) {
-                    case 200:
-                        alert('Регистрация пользователя выполнена!');
-                        that.setState({
-                            isRegistered: true
-                        });
-                        break;
-                    case 403:
-                        alert('Имя пользователя занято');
-                    default:
-                        break;
+                case 200:
+                    alert('Регистрация пользователя выполнена!');
+                    that.setState({
+                        isRegistered: true
+                    });
+                    break;
+                case 403:
+                    alert('Имя пользователя занято');
+                default:
+                    break;
                 }
             });
-        } else alert("Error");
+        } else alert('Error');
         event.preventDefault();
     }
 
@@ -110,8 +110,8 @@ export default class RegistrationForm extends React.Component {
                         </div>
                     </form>
                 </FormLayout>
-            )
-        };
-        return <Redirect to="/"/>
+            );
+        }
+        return <Redirect to="/"/>;
     }
 }

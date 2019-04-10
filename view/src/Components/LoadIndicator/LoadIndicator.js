@@ -8,5 +8,5 @@ export default function LoadIndicator() {
                 <span className="sr-only">Loading...</span>
             </div>
         </div>
-    )
+    );
 }

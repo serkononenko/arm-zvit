@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'
+import './Footer.css';
 
 import node from './node.png';
 import react from './react.png';
@@ -32,5 +32,5 @@ export default function Footer() {
                 </div>
             </footer>
         </div>
-    )
+    );
 }

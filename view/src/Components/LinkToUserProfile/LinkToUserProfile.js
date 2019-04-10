@@ -11,7 +11,7 @@ const LinkToUserProfile = (props) => {
             className={props.className}>
             {props.user.login}
         </Link>
-    )
+    );
 };
 
 export default LinkToUserProfile;

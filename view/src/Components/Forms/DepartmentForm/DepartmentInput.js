@@ -3,7 +3,7 @@ import './DepartmentInput.css';
 
 export default class DepartmentInput extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             department: ''
         };
@@ -16,7 +16,7 @@ export default class DepartmentInput extends React.Component {
         const { value, name } = e.target;
         this.setState({
             [name]: value
-        })
+        });
         e.preventDefault();
     }
 
@@ -25,7 +25,7 @@ export default class DepartmentInput extends React.Component {
         const { department } = this.state;
         const data = {
             department
-        }
+        };
         fetch('/department/add', {
             method: 'POST',
             headers: {
@@ -35,7 +35,7 @@ export default class DepartmentInput extends React.Component {
         })
             .then((res) => {
                 console.log(res.status);
-            })
+            });
     }
 
     render() {
@@ -47,7 +47,7 @@ export default class DepartmentInput extends React.Component {
                     <input className='' type='submit' value='Додати' />
                 </form>
             </div>
-        )
+        );
     }
 }
 
