@@ -11,6 +11,6 @@ export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 
-export const START_UPLOAD = 'START_UPLOAD';
+export const START_UPDATE = 'START_UPDATE';
 
-export const FINISH_UPLOAD = 'FINISH_UPLOAD';
+export const FINISH_UPDATE = 'FINISH_UPDATE';

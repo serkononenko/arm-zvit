@@ -5,8 +5,8 @@ import {
     REQUEST_PROFILE,
     RECEIVE_PROFILE,
     CLEAR_PROFILE,
-    START_UPLOAD,
-    FINISH_UPLOAD
+    START_UPDATE,
+    FINISH_UPDATE
 } from './actionTypes';
 
 //Action creator
@@ -17,56 +17,56 @@ export function toggleLogon(token) {
     return {
         type: TOGGLE_LOGON,
         payload: JSON.parse(data)
-    }
-};
+    };
+}
 
 export function toggleLogout() {
     localStorage.clear();
     return {
         type: TOGGLE_LOGON,
         payload: false
-    }
-};
+    };
+}
 
 export function requestDepartment() {
     return {
         type: REQUEST_DEPARTMENT
-    }
-};
+    };
+}
 
 export function receiveDepartment(data) {
     return {
         type: RECEIVE_DEPARTMENT,
         payload: data,
         receivedAt: Date.now()
-    }
-};
+    };
+}
 
 export function fetchDepartment() {
     return function(dispatch) {
         dispatch(requestDepartment());
         return fetch('/department/list', {method: 'GET'})
-        .then((res) => {
-            res.json().then((data) => {
-                dispatch(receiveDepartment(data))
-            })
-        });
-    }
-};
+            .then((res) => {
+                res.json().then((data) => {
+                    dispatch(receiveDepartment(data));
+                });
+            });
+    };
+}
 
 function requestProfile() {
     return {
         type: REQUEST_PROFILE
-    }
-};
+    };
+}
 
 function receiveProfile(data) {
     return {
         type: RECEIVE_PROFILE,
         payload: data,
         receivedAt: Date.now()
-    }
-};
+    };
+}
 
 export function fetchProfile(url) {
     return function(dispatch) {
@@ -75,46 +75,43 @@ export function fetchProfile(url) {
             method: 'GET'
         }).then((res) => {
             res.json().then((data) => {
-                dispatch(receiveProfile(data))
-            })
-        })
-    }
-};
+                dispatch(receiveProfile(data));
+            });
+        });
+    };
+}
 
 export function clearUserProfile() {
     return {
         type: CLEAR_PROFILE
-    }
-};
+    };
+}
 
-function startUpload() {
+function startUpdate() {
     return {
-        type: START_UPLOAD,
+        type: START_UPDATE,
         payload: true
-    }
+    };
 }
 
-function finishUpload() {
+function finishUpdate() {
     return {
-        type: FINISH_UPLOAD,
+        type: FINISH_UPDATE,
         payload: false
-    }
+    };
 }
 
-export function uploadProfileImage(url, image) {
+export function updateProfile(url, data) {
     return function(dispatch) {
-        dispatch(startUpload());
+        dispatch(startUpdate());
         return fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'image/jpeg'
-            },
-            body: image
+            body: data
         }).then((res) => {
-            dispatch(finishUpload());
+            dispatch(finishUpdate());
             if (res.status == 200) {
                 dispatch(fetchProfile(url));
             }
-        })
-    }
+        });
+    };
 }
