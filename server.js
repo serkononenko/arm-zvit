@@ -13,6 +13,7 @@ const registrationRouter = require('./routes/registration');
 const departmentRouter = require('./routes/department');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
+const administratorRouter = require('./routes/administrator');
 
 createDb();
 
@@ -31,6 +32,7 @@ app.use('/registration', registrationRouter);
 app.use('/department', departmentRouter);
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
+app.use('/administrator', administratorRouter);
 
 app.listen(3000, ()=> {
     console.log('ARM-ZVIT Server listening on 3000 port');
