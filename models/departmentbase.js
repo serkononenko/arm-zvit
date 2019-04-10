@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const reportBaseSchema = require('./reportbase')
+const reportBaseSchema = require('./reportbase');
 
 //create Shema
 const departmentListSchema = new mongoose.Schema({

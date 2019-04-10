@@ -8,6 +8,6 @@ router.post('/', user_controller.register_user);
 
 router.get('/', (req, res) => {
     res.sendFile(path.dirname( __dirname) + '/view/dist/index.html');
-})
+});
 
 module.exports = router;

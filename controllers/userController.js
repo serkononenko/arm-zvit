@@ -4,7 +4,7 @@ const User = require('../models/userbase');
 
 const user_list = (req, res) => {
     User.find({}, (err, result) => {
-        if (err) console.error(err);
+        if (err) throw err;
         else {
             res.status(200).send(result);
         }
@@ -21,7 +21,7 @@ const user_create = (req, res) => {
             department
         });
         userData.save((err) => {
-            if (err) console.error(err);
+            if (err) throw err;
             else res.status(200).send('OK');
         });
     });
@@ -30,7 +30,7 @@ const user_create = (req, res) => {
 const user_delete = (req, res) => {
     const { login } = req.body;
     User.findOneAndDelete({login}, (err) => {
-        if (err) console.error(err);
+        if (err) throw err;
         else res.status(200).send('OK');
     });
 };

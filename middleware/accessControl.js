@@ -6,6 +6,6 @@ const accessControl = (req, res, next) => {
         console.log(JWT.verify(token));
     }
     next();
-}
+};
 
 module.exports = accessControl;
