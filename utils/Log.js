@@ -8,6 +8,6 @@ function logStream (name) {
         fs.mkdirSync(logPath);
     }
     return fs.createWriteStream(path.join(logPath, name), {flags: 'a'});
-};
+}
 
 module.exports = logStream;

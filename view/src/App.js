@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleLogout, fetchDepartment } from './actions/actionCreators';
 import routes from './routes';
@@ -33,26 +34,32 @@ class App extends React.Component {
                                 )
                             }
                         />
-                    )
+                    );
                 })}
                 <Footer />
             </React.Fragment>
-        )
+        );
     }
+}
+
+App.propTypes = {
+    loggedIn: PropTypes.object,
+    getDeparnmentList: PropTypes.func,
+    handleLogOut: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
     const { loggedIn } = state.logon;
     return {
         loggedIn
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleLogOut: () => dispatch(toggleLogout()),
         getDeparnmentList: () => dispatch(fetchDepartment())
-    }
-}
+    };
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

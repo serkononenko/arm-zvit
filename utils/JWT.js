@@ -52,6 +52,6 @@ const JWT = {
     salt: 'erondondon',
     digest: 'sha256',
     header: JSON.stringify({alg: 'HS256', typ: 'JWT'})
-}
+};
 
 module.exports = JWT;
