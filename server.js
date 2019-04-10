@@ -33,5 +33,5 @@ app.use('/user', userRouter);
 app.use('/profile', profileRouter);
 
 app.listen(3000, ()=> {
-  console.log("ARM-ZVIT Server listening on 3000 port");
+    console.log('ARM-ZVIT Server listening on 3000 port');
 });
