@@ -8,15 +8,9 @@ const accessControl = require('./middleware/accessControl');
 const createDb = require('./utils/dbSetting');
 const logStream = require('./utils/Log');
 
-const loginRouter = require('./routes/login');
-const registrationRouter = require('./routes/registration');
-const departmentRouter = require('./routes/department');
-const userRouter = require('./routes/user');
-const profileRouter = require('./routes/profile');
-const administratorRouter = require('./routes/administrator');
+const apiRouter = require('./routes/api');
 
 createDb();
-
 
 app.use(helmet());
 app.use(morgan('short', {stream: logStream('main.log')}));
@@ -27,12 +21,12 @@ app.use(express.static(path.join(__dirname, '/view/dist/')));
 
 app.use(accessControl);
 
-app.use('/login', loginRouter);
-app.use('/registration', registrationRouter);
-app.use('/department', departmentRouter);
-app.use('/user', userRouter);
-app.use('/profile', profileRouter);
-app.use('/administrator', administratorRouter);
+app.use('/api', apiRouter);
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'view', 'dist', 'index.html'));
+});
+
 
 app.listen(3000, ()=> {
     console.log('ARM-ZVIT Server listening on 3000 port');
