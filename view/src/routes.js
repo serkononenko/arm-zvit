@@ -34,7 +34,8 @@ const routes = (profile) => {
             },
             {
                 path: '/registration',
-                component: RegistrationForm
+                component: RegistrationForm,
+                isExact: false
             }
         ];
     }
