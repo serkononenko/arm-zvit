@@ -1,11 +1,15 @@
+require('dotenv').config();
 const path = require('path');
-const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'production',
 
     entry: './view/src/index.js',
+
+    devtool: 'inline-source-map',
 
     devServer: {
         contentBase: path.resolve(__dirname, './view/dist')
@@ -25,11 +29,13 @@ module.exports = {
     },
 
     plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            favicon: 'view/src/assets/favicon.ico',
+            template: 'view/src/assets/index.html'
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
-        }),
-        new webpack.SourceMapDevToolPlugin({
-            filename: 'sourcemaps/[file].map'
         })
     ],
 
