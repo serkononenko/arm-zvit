@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -28,6 +29,6 @@ app.get('/*', function (req, res) {
 });
 
 
-app.listen(3000, ()=> {
-    console.log('ARM-ZVIT Server listening on 3000 port');
+app.listen(process.env.PORT, ()=> {
+    console.log('ARM-ZVIT Server listening on '+ process.env.PORT +' port');
 });
