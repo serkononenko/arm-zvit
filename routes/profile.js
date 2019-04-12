@@ -9,14 +9,7 @@ const profile_controller = require('../controllers/profileController');
 router.use(express.static(dir + '/view/dist/'));
 router.use(bodyParser.text());
 
-router.get('/:id', (req, res) => {
-    if (req.accepts('application/json')) {
-        console.log('data');
-        profile_controller.user_profile(req, res);
-    }
-    console.log('page');
-    res.sendFile(path.dirname( __dirname) + '/view/dist/index.html');
-});
+router.get('/:id', profile_controller.user_profile);
 
 router.post('/:id/*', profile_controller.user_profile_update);
 
