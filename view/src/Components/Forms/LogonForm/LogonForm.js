@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleLogon } from '../../../actions/actionCreators';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
 import '../Forms.css';
@@ -41,14 +42,20 @@ const LogonForm = (props) => {
     );
 };
 
+LogonForm.propTypes = {
+    login: PropTypes.string,
+    password: PropTypes.string,
+    handleChange: PropTypes.func,
+    handleSubmit: PropTypes.func
+};
+
 class LogonFormContainer extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
             login: '',
-            password: '',
-            redirectToReferrer: false
+            password: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -65,7 +72,7 @@ class LogonFormContainer extends React.Component {
         event.preventDefault();
         const that = this;
         const {login, password} = this.state;
-        fetch('/login', {
+        fetch('/api/login', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -80,9 +87,6 @@ class LogonFormContainer extends React.Component {
                 res.text().then((token) => {
                     that.props.handleLogIn(token);
                 });
-                that.setState({
-                    redirectToReferrer: true
-                });
             } else {
                 alert('Невірний логін або пароль');
             }
@@ -90,11 +94,6 @@ class LogonFormContainer extends React.Component {
     }
 
     render() {
-        let { from } = this.props.location.state || { from: { pathname: '/' } };
-        let { redirectToReferrer } = this.state;
-    
-        if (redirectToReferrer) return <Redirect to={from} />;
-
         return (
             <FormLayout>
                 <LogonForm 
