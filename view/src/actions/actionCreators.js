@@ -1,5 +1,4 @@
-import { 
-    TOGGLE_LOGON, 
+import {
     REQUEST_DEPARTMENT, 
     RECEIVE_DEPARTMENT,
     REQUEST_PROFILE,
@@ -8,25 +7,6 @@ import {
     START_UPDATE,
     FINISH_UPDATE
 } from './actionTypes';
-
-//Action creator
-export function toggleLogon(token) {
-    localStorage.setItem('accessToken', token);
-    const data = atob(token.split('.')[1]);
-    localStorage.setItem('loggedIn', data);
-    return {
-        type: TOGGLE_LOGON,
-        payload: JSON.parse(data)
-    };
-}
-
-export function toggleLogout() {
-    localStorage.clear();
-    return {
-        type: TOGGLE_LOGON,
-        payload: false
-    };
-}
 
 export function requestDepartment() {
     return {
@@ -45,7 +25,7 @@ export function receiveDepartment(data) {
 export function fetchDepartment() {
     return function(dispatch) {
         dispatch(requestDepartment());
-        return fetch('/department/list', {method: 'GET'})
+        return fetch('/api/department/list', {method: 'GET'})
             .then((res) => {
                 res.json().then((data) => {
                     dispatch(receiveDepartment(data));
@@ -71,8 +51,11 @@ function receiveProfile(data) {
 export function fetchProfile(url) {
     return function(dispatch) {
         dispatch(requestProfile());
-        return fetch(url, {
-            method: 'GET'
+        return fetch('/api'+url, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json'
+            }
         }).then((res) => {
             res.json().then((data) => {
                 dispatch(receiveProfile(data));
@@ -104,13 +87,13 @@ function finishUpdate() {
 export function updateProfile(url, data) {
     return function(dispatch) {
         dispatch(startUpdate());
-        return fetch(url, {
+        return fetch('/api'+url, {
             method: 'POST',
             body: data
         }).then((res) => {
             dispatch(finishUpdate());
-            if (res.status == 200) {
-                dispatch(fetchProfile(url));
+            if (res.redirected) {
+                return res.url;
             }
         });
     };

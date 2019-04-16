@@ -12,16 +12,16 @@ import '../../node_modules/bootstrap/dist/js/bootstrap.bundle';
 
 const App = React.lazy(() => import('./App'));
 
-const elem =  <Suspense fallback={<LoadIndicator />}>
-    <Router>
-        <App />
-    </Router>
-</Suspense>;
+
  
 ReactDOM.render(
     <Provider store={store}>
         <MainLayout>
-            {elem}
+            <Suspense fallback={<LoadIndicator />}>
+                <Router>
+                    <App />
+                </Router>
+            </Suspense>
         </MainLayout>
     </Provider>,
     document.getElementById('root')

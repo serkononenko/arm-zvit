@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleLogout, fetchDepartment } from './actions/actionCreators';
+import { fetchDepartment } from './actions/actionCreators';
+import { logoutUser } from './actions/logoutActions';
 import routes from './routes';
 
 const Header = React.lazy(() => import('./Components/Header/Header'));
@@ -57,7 +58,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogOut: () => dispatch(toggleLogout()),
+        handleLogOut: () => dispatch(logoutUser()),
         getDeparnmentList: () => dispatch(fetchDepartment())
     };
 };

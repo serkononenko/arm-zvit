@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { toggleLogon } from '../../../actions/actionCreators';
+import { loginUser } from '../../../actions/loginActions';
 import { Link } from 'react-router-dom';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 
@@ -70,27 +70,7 @@ class LogonFormContainer extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const that = this;
-        const {login, password} = this.state;
-        fetch('/api/login', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                login: login.toLowerCase(),
-                password
-            })
-        }).then(function(res) {
-            if (res.status == 200) {
-                res.text().then((token) => {
-                    that.props.handleLogIn(token);
-                });
-            } else {
-                alert('Невірний логін або пароль');
-            }
-        });
+        this.props.handleLogIn(this.state);
     }
 
     render() {
@@ -107,9 +87,13 @@ class LogonFormContainer extends React.Component {
     }
 }
 
+LogonFormContainer.propTypes = {
+    handleLogIn: PropTypes.func
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleLogIn: (token) => dispatch(toggleLogon(token))
+        handleLogIn: (login, password) => dispatch(loginUser(login, password))
     };
 };
 
