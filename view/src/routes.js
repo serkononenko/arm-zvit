@@ -2,7 +2,7 @@ import React from 'react';
 
 const RegistrationFormContainer = React.lazy(() => import('./Containers/RegistrationFormContainer'));
 const LogonFormContainer = React.lazy(() => import('./Containers/LogonFormContainer'));
-const UserProfile = React.lazy(() => import('./Components/UserProfile/UserProfile'));
+const UserProfileContainer = React.lazy(() => import('./Containers/UserProfileContainer'));
 const MainPage = React.lazy(() => import('./Components/MainPage/MainPage'));
 const AdminPage = React.lazy(() => import('./Components/AdminPage/AdminPage'));
 
@@ -21,7 +21,7 @@ const routes = (profile) => {
             },
             {
                 path: '/profile/:_id',
-                component: UserProfile,
+                component: UserProfileContainer,
                 isExact: false
             }
         ];

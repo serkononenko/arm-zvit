@@ -1,29 +1,54 @@
+import {
+    PROFILE_REQUEST, PROFILE_RECEIVE, PROFILE_FAILURE, PROFILE_CLEAR, UPDATE_PROFILE, UPDATE_PROFILE_SUCCESSFUL, UPDATE_PROFILE_FAILURE
+} from '../actions/profileActions';
+
 const initialState = {
     isFetching: false,
-    uploading: false,
-    profile: {}
+    isReceived: false,
+    isUpdated: false,
+    profile: ''
 };
 
 export default function profileReducer(state = initialState, action) {
     switch(action.type) {
-    case 'REQUEST_PROFILE':
+    case PROFILE_REQUEST:
+        return Object.assign({}, state, {
+            isFetching: true,
+            isReceived: false,
+            isUpdated: false
+        });
+    case PROFILE_RECEIVE:
+        return Object.assign({}, state, {
+            isFetching: false,
+            isReceived: true,
+            profile: action.payload
+        });
+    case PROFILE_FAILURE:
+        return Object.assign({}, state, {
+            isFetching: false,
+            isReceived: false,
+            errorMessage: action.message
+        });
+    case PROFILE_CLEAR:
+        return Object.assign({}, state, {
+            isFetching: false,
+            isReceived: false,
+            profile: action.payload
+        });
+    case UPDATE_PROFILE:
         return Object.assign({}, state, {
             isFetching: true
         });
-    case 'RECEIVE_PROFILE':
+    case UPDATE_PROFILE_SUCCESSFUL:
         return Object.assign({}, state, {
-            profile: action.payload,
-            lastUpdated: action.receivedAt
+            isFetching: false,
+            isUpdated: true
         });
-    case 'CLEAR_PROFILE':
-        return Object.assign({}, state, initialState);
-    case 'START_UPLOAD':
+    case UPDATE_PROFILE_FAILURE:
         return Object.assign({}, state, {
-            uploading: action.payload
-        });
-    case 'FINISH_UPLOAD':
-        return Object.assign({}, state, {
-            uploading: action.payload
+            isFetching: false,
+            isUpdated: false,
+            errorMessage: action.message
         });
     default: return state;
     }

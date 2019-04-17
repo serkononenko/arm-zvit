@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { uploadProfileImage } from '../../actions/actionCreators';
-import './UploadImage.css';
+import PropTypes from 'prop-types';
+import './UserUpdateImage.css';
 
 function Image() {
     return (
@@ -13,12 +12,12 @@ function Image() {
             <rect width="100%" height="100%" fill="#868e96"></rect>
             <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text>
         </svg>
-    )
+    );
 }
 
-class UploadImge extends React.Component {
+class UserUpdateImage extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.fileInput = React.createRef();
         this.handleChange= this.handleChange.bind(this);
@@ -30,7 +29,7 @@ class UploadImge extends React.Component {
         const image = this.fileInput.current.files[0];
         let label = this.fileInput.current.labels[0].childNodes[0];
         label.data = image.name;
-        this.props.uploadProfileImage(url, image);
+        this.props.updateProfile(url+'/image', image);
     }
 
     render() {
@@ -51,21 +50,15 @@ class UploadImge extends React.Component {
                     </form>
                 </figcaption>
             </figure>
-        )
+        );
     }
 }
 
-const mapStateToProps = (state) => {
-    const { image } = state.profile.profile;
-    return {
-        image
-    }
+UserUpdateImage.propTypes = {
+    match: PropTypes.object,
+    history: PropTypes.object,
+    updateProfile: PropTypes.func,
+    image: PropTypes.string
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        uploadProfileImage: (url, image) => dispatch(uploadProfileImage(url, image))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UploadImge);
+export default UserUpdateImage;
