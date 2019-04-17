@@ -1,45 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
 
-export default class UserList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            userlist: []
-        };
-    }
+const UserList = ({ userlist }) => {
+    return (
+        <div className='list-group'>
+            {
+                userlist.map((item) => <LinkToUserProfile 
+                    key={item._id} 
+                    user={item} 
+                    className='list-group-item list-group-item-action'
+                />)
+            }
+        </div>
+    );
+};
 
-    componentDidMount() {
-        const headers = new Headers({
-            'Authorization': 'Bearer '+localStorage.getItem('accessToken')
-        });
-        fetch('/user/list', {
-            method: 'GET',
-            headers
-        })
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        this.setState({
-                            userlist: data
-                        })
-                    })
-            })
-    }
+UserList.propTypes = {
+    userlist: PropTypes.object
+};
 
-    render() {
-        const { userlist } = this.state;
-        const list = userlist.map((item) => 
-            <LinkToUserProfile 
-                key={item._id} 
-                user={item} 
-                className='list-group-item list-group-item-action'
-            />
-        )
-        return (
-            <div className='list-group'>
-                {list}
-            </div>
-        )
-    }
-}
+export default UserList;
