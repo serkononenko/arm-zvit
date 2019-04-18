@@ -18,22 +18,27 @@ const UserUpdateLogin = ({login, match, updateProfile}) => {
     return (
         <div className='card'>
             <div className='card-body'>
-                <h5 className='card-title'>Логін користувача</h5>
                 <form onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label htmlFor='login'>Новий логін</label>
-                        <input 
-                            type='text' 
-                            className='form-control' 
-                            id='login'  
-                            placeholder={login}
-                            value={newLogin}
-                            onChange={handleChange}
-                            required
-                            minLength='6'    
-                        />
+                    <div className='form-group row'>
+                        <label className='col-sm-2 col-form-label' htmlFor='login'>Новий логін</label>
+                        <div className='col-sm-10'>
+                            <input 
+                                type='text' 
+                                className='form-control' 
+                                id='login'  
+                                placeholder={login}
+                                value={newLogin}
+                                onChange={handleChange}
+                                required
+                                minLength='6'    
+                            />
+                        </div>
                     </div>
-                    <button type='submit' className='btn btn-outline-success'>Змінити</button>
+                    <div className='form-group row'>
+                        <div className='col-sm-10'>
+                            <button type='submit' className='btn btn-outline-success'>Змінити</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
