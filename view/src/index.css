@@ -3,5 +3,7 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
 
 body {
+    padding-top: 4.5rem;
     font-family: 'Roboto', sans-serif;
+    background-color: #28a745;
 }

@@ -10,7 +10,7 @@ import bootstrap from './bootstrap.png';
 
 export default function Footer() {
     return (
-        <div className='container-fluid Footer'>
+        <div className='container-fluid fixed-bottom bg-success py-2 Footer'>
             <footer className='row align-items-center'>
                 <div className='col'>
                     <img src={node} className='img-fluid'/>

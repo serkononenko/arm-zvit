@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router } from 'react-router-dom';
-import MainLayout from './Layouts/MainLayout/MainLayout';
+
 import LoadIndicator from './Components/LoadIndicator/LoadIndicator';
 
 import './index.css';
@@ -16,13 +16,11 @@ const App = React.lazy(() => import('./App'));
  
 ReactDOM.render(
     <Provider store={store}>
-        <MainLayout>
-            <Suspense fallback={<LoadIndicator />}>
-                <Router>
-                    <App />
-                </Router>
-            </Suspense>
-        </MainLayout>
+        <Suspense fallback={<LoadIndicator />}>
+            <Router>
+                <App />
+            </Router>
+        </Suspense>
     </Provider>,
     document.getElementById('root')
 );

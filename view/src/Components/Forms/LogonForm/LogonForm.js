@@ -6,8 +6,8 @@ import '../Forms.css';
 
 const LogonForm = ({ handleSubmit, handleChange, login, password }) => {
     return (
-        <form className='form'  onSubmit={handleSubmit} >
-            <span className='form__title'>Вхід в систему</span>
+        <form className='form-signin' onSubmit={handleSubmit}>
+            <h1 className='h3 mb-3 font-weight-normal'>Вхід в систему</h1>
             <div className="form-group">
                 <label htmlFor='login'>Логін:</label>
                 <input 

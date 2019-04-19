@@ -23,12 +23,10 @@ function Header({user, handleLogOut}) {
         null
     );
     return (
-        <div className='navbar navbar-light header shadow-sm p-3 mb-5 bg-white'>
-            <Link to='/' className='navbar-brand header__logo logo'>
-                <img src={logo} className='img-fluid logo__img' />
-                <div className='logo__title'>
-                    <h1>АРМ - ЗВІТ v2.0</h1>
-                </div>
+        <div className='navbar navbar-expand-md navbar-light fixed-top bg-white'>
+            <Link to='/' className='navbar-brand d-flex justify-content-between col-6'>
+                <img src={logo} className='mr-2' width='36' height='36'/>
+                <strong>АРМ - ЗВІТ v2.0</strong>
             </Link>
             {elem}
         </div>
