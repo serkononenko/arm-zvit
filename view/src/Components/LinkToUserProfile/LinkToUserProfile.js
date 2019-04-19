@@ -1,17 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import './LinkToUserProfile.css';
-
-const LinkToUserProfile = (props) => {
+const LinkToUserProfile = ({ user, className }) => {
     return (
         <Link 
-            to={`/profile/${props.user._id}`}
+            to={`/profile/${user._id}`}
             replace 
-            className={props.className}>
-            {props.user.login}
+            className={className}>
+            {user.login}
         </Link>
     );
+};
+
+LinkToUserProfile.propTypes = {
+    user: PropTypes.object,
+    className: PropTypes.string
 };
 
 export default LinkToUserProfile;
