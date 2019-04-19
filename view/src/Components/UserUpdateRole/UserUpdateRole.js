@@ -24,9 +24,9 @@ const UserUpdateRole = ({ role, updateProfile, match }) => {
                         <div className='row'>
                             <legend className='col-form-label col-sm-2 pt-0'>Роль користувача</legend>
                             <div className='col-sm-10'>
-                                <div className='form-check'>
+                                <div className='custom-control custom-radio'>
                                     <input 
-                                        className='form-check-input' 
+                                        className='custom-control-input' 
                                         name='radio' 
                                         id='radio1' 
                                         value='' 
@@ -34,11 +34,11 @@ const UserUpdateRole = ({ role, updateProfile, match }) => {
                                         onChange={handleOptionChange} 
                                         type='radio' 
                                     />
-                                    <label className='form-check-label' htmlFor='radio1'>Користувач</label>
+                                    <label className='custom-control-label' htmlFor='radio1'>Користувач</label>
                                 </div>
-                                <div className='form-check'>
+                                <div className='custom-control custom-radio'>
                                     <input 
-                                        className='form-check-input' 
+                                        className='custom-control-input' 
                                         name='radio' 
                                         id='radio2' 
                                         value={true} 
@@ -46,7 +46,7 @@ const UserUpdateRole = ({ role, updateProfile, match }) => {
                                         onChange={handleOptionChange} 
                                         type='radio' 
                                     />
-                                    <label className='form-check-label' htmlFor='radio2'>Адміністратор</label>
+                                    <label className='custom-control-label' htmlFor='radio2'>Адміністратор</label>
                                 </div>
                             </div>
                         </div>

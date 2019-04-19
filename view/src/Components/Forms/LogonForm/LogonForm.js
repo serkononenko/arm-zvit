@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import '../Forms.css';
-
 const LogonForm = ({ handleSubmit, handleChange, login, password }) => {
     return (
         <form className='form-signin' onSubmit={handleSubmit}>
@@ -31,9 +29,9 @@ const LogonForm = ({ handleSubmit, handleChange, login, password }) => {
                     required 
                 />
             </div>
-            <div className = 'form__btn'>
-                <input className = 'btn btn-outline-success btn-lg form__btn-item' type ='submit' value ='Вхід' />
-                <Link className = 'btn btn-outline-success btn-lg form__btn-item' to = '/registration' >Реєстрація</Link>
+            <div className='form-row justify-content-around'>
+                <input className = 'btn btn-outline-success btn-lg col-5' type ='submit' value ='Вхід' />
+                <Link className = 'btn btn-outline-success btn-lg col-5 overflow-hidden' to = '/registration' >Реєстрація</Link>
             </div>
         </form>
     );

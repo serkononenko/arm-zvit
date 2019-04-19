@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import FormLayout from '../../../Layouts/FormLayout/FormLayout';
 import DepartmentSelect from '../DepartmentForm/DepartmentSelect';
 
-import '../Forms.css';
-
 const RegistrationForm = ({ handleChange, handleSubmit, login, password, repassword, department }) => {
     return (
         <FormLayout>
             <form className='form-signin' onSubmit={handleSubmit}>
-                <h1 className='h3 mb-3 font-weight-normal'>Вхід в систему</h1>
+                <h1 className='h3 mb-3 font-weight-normal'>Реєстрація в системі</h1>
                 <div className='form-group'>
                     <label htmlFor='login'>Логін:</label>
                     <input 
@@ -48,8 +46,8 @@ const RegistrationForm = ({ handleChange, handleSubmit, login, password, repassw
                     />
                 </div>
                 <DepartmentSelect onChange={handleChange} value={department} />
-                <div className ='form__btn'>
-                    <input className ='btn btn-outline-success btn-lg form__btn-item' type='submit' value='Зареєструватися' />
+                <div className ='form-row justify-content-around'>
+                    <input className ='btn btn-outline-success btn-lg col-5' type='submit' value='Зареєструватися' />
                 </div>
             </form>
         </FormLayout>
