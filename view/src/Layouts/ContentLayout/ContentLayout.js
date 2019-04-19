@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ContentLayout.css';
 
 const ContentLayout = (props) => {
     return (
-        <div className='ContentLayout'>
+        <div className='rounded bg-light shadow-lg col-11 p-3 mt-3 mx-auto'>
             {props.children}
         </div>
     );
