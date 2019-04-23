@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registrationUser } from '../actions/registrationActions';
-import RegistrationForm from '../Components/Forms/RegistrationForm/RegistrationForm';
+import RegistrationForm from '../Components/RegistrationForm';
 
 class RegistrationFormContainer extends React.Component {
     constructor(props) {

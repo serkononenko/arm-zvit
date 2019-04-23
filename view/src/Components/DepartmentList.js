@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Accordion from '../Accordion/Accordion';
+import Accordion from './Accordion';
 
 const DepartmentList = ({ department }) => {
     return <Accordion array={department} />;

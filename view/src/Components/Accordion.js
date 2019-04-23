@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AccordionItem from '../AccordionItem/AccordionItem';
+import AccordionItem from './AccordionItem/AccordionItem';
 
 const Accordion = ({ array }) => {
     return (

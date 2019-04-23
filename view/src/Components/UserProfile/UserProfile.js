@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
-import UserUpdateRole from '../UserUpdateRole/UserUpdateRole';
-import UserUpdateLogin from '../UserUpdateLogin/UserUpdateLogin';
-import UserUpdatePassword from '../UserUpdatePassword/UserUpdatePassword';
+import UserUpdateRole from '../UserUpdateRole';
+import UserUpdateLogin from '../UserUpdateLogin';
+import UserUpdatePassword from '../UserUpdatePassword';
+import UserUpdateDepartment from '../UserUpdateDepartment';
 import './UserProfile.css';
 
 const ContentLayout = React.lazy(() => import('../../Layouts/ContentLayout/ContentLayout'));
@@ -27,7 +28,7 @@ const UserProfile = (props) => {
                             <h5 className='card-title'>Особисті дані</h5>
                             <div className='list-group'>
                                 <Link className='list-group-item list-group-item-action link-login-change' to={`${match.url}/login`}>{profile.login}</Link>
-                                <Link className='list-group-item list-group-item-action link-department-change' to='#'>{profile.department}</Link>
+                                <Link className='list-group-item list-group-item-action link-department-change' to={`${match.url}/department`}>{profile.department}</Link>
                                 <Link className='list-group-item list-group-item-action link-role-change' to={`${match.url}/role`}>{profile.isAdmin ? 'Адміністратор' : 'Користувач'}</Link>
                                 <Link className='list-group-item list-group-item-action link-password-change' to={`${match.url}/password`}>******</Link>
 
@@ -35,6 +36,14 @@ const UserProfile = (props) => {
                                     path={`${match.url}/login`}
                                     render={(props) => <UserUpdateLogin 
                                         login={profile.login}
+                                        updateProfile={updateProfile} 
+                                        {...props}
+                                    />}
+                                />
+                                <Route 
+                                    path={`${match.url}/department`}
+                                    render={(props) => <UserUpdateDepartment 
+                                        department={profile.department}
                                         updateProfile={updateProfile} 
                                         {...props}
                                     />}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormLayout from '../../../Layouts/FormLayout/FormLayout';
-import DepartmentSelect from '../DepartmentForm/DepartmentSelect';
+import FormLayout from '../Layouts/FormLayout/FormLayout';
+import DepartmentSelect from './DepartmentSelect';
 
 const RegistrationForm = ({ handleChange, handleSubmit, login, password, repassword, department }) => {
     return (
