@@ -1,21 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import withDepartments from '../Containers/DepartmentContainer';
 import Accordion from './Accordion';
 
-const DepartmentList = ({ department }) => {
-    return <Accordion array={department} />;
-};
+const DepartmentList = withDepartments(Accordion);
 
-DepartmentList.propTypes = {
-    department: PropTypes.array
-};
-
-const mapStateToProps = (state) => {
-    const { department } = state.department;
-    return {
-        department
-    };
-};
-
-export default connect(mapStateToProps)(DepartmentList);
+export default DepartmentList;
