@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
+import LinkToUserProfile from './LinkToUserProfile/LinkToUserProfile';
 
 const UserList = ({ userlist }) => {
     return (
@@ -17,7 +17,7 @@ const UserList = ({ userlist }) => {
 };
 
 UserList.propTypes = {
-    userlist: PropTypes.object
+    userlist: PropTypes.array
 };
 
 export default UserList;

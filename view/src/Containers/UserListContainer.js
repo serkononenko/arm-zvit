@@ -1,5 +1,5 @@
 import React from 'react';
-import UserList from '../Components/UserList/UserList';
+import UserList from '../Components/UserList';
 
 class UserListContainer extends React.Component {
     constructor(props) {
