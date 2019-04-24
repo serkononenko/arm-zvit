@@ -1,6 +1,24 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import withDepartments from '../Containers/DepartmentContainer';
-import Accordion from './Accordion';
+import LinkToDepartmentProfile from './LinkToDepartmentProfile';
 
-const DepartmentList = withDepartments(Accordion);
+const DepartmentList = ({data}) => {
+    return (
+        <div className='list-group'>
+            {
+                data.map((item) => <LinkToDepartmentProfile 
+                    key={item._id}
+                    department={item}
+                    className='list-group-item list-group-item-action'
+                />)
+            }
+        </div>
+    );
+};
 
-export default DepartmentList;
+DepartmentList.propTypes = {
+    data: PropTypes.array
+};
+
+export default withDepartments(DepartmentList);
