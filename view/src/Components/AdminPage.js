@@ -12,7 +12,7 @@ const AdminPage = ({ match }) => {
     return (
         <ContentLayout>
             <>
-                <nav>
+                <nav className='mb-2'>
                     <ul className='nav nav-tabs'>
                         <li className='nav-item'>
                             <NavLink to='/administrator/users' className='nav-link' activeClassName='active'>Користувачі</NavLink>
