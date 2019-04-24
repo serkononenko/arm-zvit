@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withDepartments from '../Containers/DepartmentContainer';
+import withDepartments from '../Containers/withDepartments';
 import LinkToDepartmentProfile from './LinkToDepartmentProfile';
 
 const DepartmentList = ({data}) => {
