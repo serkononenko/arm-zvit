@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkToUserProfile from './LinkToUserProfile/LinkToUserProfile';
+import LinkToUserProfile from './LinkToUserProfile';
 
 const UserList = ({ userlist }) => {
     return (

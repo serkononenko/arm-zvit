@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import LinkToUserProfile from '../LinkToUserProfile/LinkToUserProfile';
+import PropTypes from 'prop-types';
+import LinkToUserProfile from './LinkToUserProfile';
 
 const DropdownSplitButton = ({ user, handleLogOut }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,11 @@ const DropdownSplitButton = ({ user, handleLogOut }) => {
             </div>
         </div>
     );
+};
+
+DropdownSplitButton.propTypes = {
+    user: PropTypes.object,
+    handleLogOut: PropTypes.func
 };
 
 export default DropdownSplitButton;
