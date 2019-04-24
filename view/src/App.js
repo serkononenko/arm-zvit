@@ -15,7 +15,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getDeparnmentList();
+        this.props.getDeparnmentList('/department');
     }
 
     render() {
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleLogOut: () => dispatch(logoutUser()),
-        getDeparnmentList: () => dispatch(fetchDepartment())
+        getDeparnmentList: (url) => dispatch(fetchDepartment(url))
     };
 };
 

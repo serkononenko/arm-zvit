@@ -8,6 +8,16 @@ const department_list = (req, res) => {
     });
 };
 
+const department_profile = (req, res) => {
+    const { id } = req.params;
+    if (id) {
+        Department.findById(id, (err, result) => {
+            if (err) throw err;
+            res.send(result);
+        });
+    }
+};
+
 const department_create = (req, res) => {
     const { department } = req.body;
     const departmentData = new Department({
@@ -29,6 +39,7 @@ const department_find_by_id = (req, res) => {
 
 module.exports = {
     department_list,
+    department_profile,
     department_create,
     department_find_by_id
 };

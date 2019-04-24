@@ -3,8 +3,10 @@ const router = express.Router();
 
 const department_controller = require('../controllers/departmentController');
 
-router.get('/list', department_controller.department_list);
+router.get('/', department_controller.department_list);
 
-router.post('/add', department_controller.department_create);
+router.get('/:id', department_controller.department_profile);
+
+router.post('/', department_controller.department_create);
 
 module.exports = router;

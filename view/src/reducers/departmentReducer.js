@@ -1,12 +1,12 @@
 import {
-    REQUEST_DEPARTMENT, RECEIVE_DEPARTMENT, FAILURE_DEPARTMENT
+    REQUEST_DEPARTMENT, RECEIVE_DEPARTMENT, RECEIVE_DEPARTMENT_LIST, FAILURE_DEPARTMENT
 } from '../actions/departmentActions';
 
 const initialState = {
     isFetching: false,
     isReceived: false,
     isUpdated: false,
-    department: []
+    departmentList: []
 };
 
 export default function departmentReducer(state = initialState, action) {
@@ -19,7 +19,13 @@ export default function departmentReducer(state = initialState, action) {
         return Object.assign({}, state, {
             isFetching: false,
             isReceived: true,
-            department: action.payload,
+            department: action.payload
+        });
+    case RECEIVE_DEPARTMENT_LIST:
+        return Object.assign({}, state, {
+            isFetching: false,
+            isReceived: true,
+            departmentList: action.payload
         });
     case FAILURE_DEPARTMENT:
         return Object.assign({}, state, {

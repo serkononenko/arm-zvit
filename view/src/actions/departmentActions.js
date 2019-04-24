@@ -1,4 +1,5 @@
 export const REQUEST_DEPARTMENT = 'REQUEST_DEPARTMENT';
+export const RECEIVE_DEPARTMENT_LIST = 'RECEIVE_DEPARTMENT_LIST';
 export const RECEIVE_DEPARTMENT = 'RECEIVE_DEPARTMENT';
 export const FAILURE_DEPARTMENT = 'FAILURE_DEPARTMENT';
 
@@ -16,7 +17,15 @@ function receiveDepartment(data) {
         type: RECEIVE_DEPARTMENT,
         isFetching: false,
         isReceived: true,
-        isUpdated: false,
+        payload: data
+    };
+}
+
+function receiveDepartmentList(data) {
+    return {
+        type: RECEIVE_DEPARTMENT_LIST,
+        isFetching: false,
+        isReceived: true,
         payload: data
     };
 }
@@ -30,16 +39,17 @@ function departmentError(message) {
     };
 }
 
-export function fetchDepartment() {
+export function fetchDepartment(url) {
     return function(dispatch) {
         dispatch(requestDepartment());
-        return fetch('/api/department/list')
+        return fetch('/api'+url)
             .then(res => {
                 if (!res.ok) {
                     dispatch(departmentError(res.statusText));
                 } else {
                     res.json().then(data => {
-                        dispatch(receiveDepartment(data));
+                        if (!Array.isArray(data)) dispatch(receiveDepartment(data));
+                        else dispatch(receiveDepartmentList(data));
                     });
                 }
             });
