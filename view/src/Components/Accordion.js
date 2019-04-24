@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AccordionItem from './AccordionItem/AccordionItem';
 
-const Accordion = ({ array }) => {
+const Accordion = ({ data }) => {
     return (
         <div className='accordion'>
             {
-                array.map((item) => {
+                data.map((item) => {
                     return <AccordionItem name={item.name} key={item._id} />;
                 })
             }
@@ -15,7 +15,7 @@ const Accordion = ({ array }) => {
 };
 
 Accordion.propTypes = {
-    array: PropTypes.array
+    data: PropTypes.array
 };
 
 export default Accordion;
