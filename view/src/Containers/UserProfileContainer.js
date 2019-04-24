@@ -15,8 +15,8 @@ class UserProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.isUpdated !== prevProps.isUpdated) {
-            const { url } = this.props.match;
+        const { url } = this.props.match;
+        if (this.props.isUpdated !== prevProps.isUpdated || url !== prevProps.match.url) {
             this.props.getUserProfile(url);
             this.props.history.push(url);
         }
