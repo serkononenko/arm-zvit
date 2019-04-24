@@ -45,7 +45,10 @@ const RegistrationForm = ({ handleChange, handleSubmit, login, password, repassw
                         required 
                     />
                 </div>
-                <DepartmentSelect onChange={handleChange} value={department} />
+                <div className='form-group'>
+                    <label htmlFor='department'>Оберіть свій підрозділ:</label>
+                    <DepartmentSelect handleChange={handleChange} value={department} id='department'/>
+                </div>
                 <div className ='form-row justify-content-around'>
                     <input className ='btn btn-outline-success btn-lg col-5' type='submit' value='Зареєструватися' />
                 </div>
