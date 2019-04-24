@@ -46,7 +46,7 @@ const RegistrationForm = ({ handleChange, handleSubmit, login, password, repassw
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor='department'>Оберіть свій підрозділ:</label>
+                    <label htmlFor='department'>Підрозділ:</label>
                     <DepartmentSelect handleChange={handleChange} value={department} id='department'/>
                 </div>
                 <div className ='form-row justify-content-around'>

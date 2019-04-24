@@ -10,6 +10,7 @@ const Select = ({ data, value, handleChange, id }) => {
             value={value}
             onChange={handleChange}
         >
+            <option value=''>Оберіть зі списку</option>
             { 
                 data.map((item) => 
                     <option key={item._id} value={item._id}>
