@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchDepartment } from './actions/actionCreators';
+import { fetchDepartment } from './actions/departmentActions';
 import { logoutUser } from './actions/logoutActions';
 import routes from './routes';
 

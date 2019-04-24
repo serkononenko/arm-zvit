@@ -1,5 +1,0 @@
-//Action type
-
-export const REQUEST_DEPARTMENT = 'REQUEST_DEPARTMENT';
-
-export const RECEIVE_DEPARTMENT = 'RECEIVE_DEPARTMENT';
