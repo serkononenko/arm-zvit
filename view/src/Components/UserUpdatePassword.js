@@ -17,7 +17,7 @@ const UserUpdatePassword = () => {
             <div className='card-body'>
                 <form onSubmit={handleSubmit}>
                     <div className='form-group row'>
-                        <label className='col-sm-2 col-form-label' htmlFor='old-password'>Пароль:</label>
+                        <label className='col-sm-2 col-form-label' htmlFor='old-password'>Пароль</label>
                         <div className='col-sm-10'>
                             <input 
                                 className='form-control'
@@ -30,7 +30,7 @@ const UserUpdatePassword = () => {
                         </div>
                     </div>   
                     <div className='form-group row'>
-                        <label className='col-sm-2 col-form-label' htmlFor='password'>Новий пароль:</label>
+                        <label className='col-sm-2 col-form-label' htmlFor='password'>Новий пароль</label>
                         <div className='col-sm-10'>
                             <input 
                                 className = 'form-control'
@@ -43,7 +43,7 @@ const UserUpdatePassword = () => {
                         </div>
                     </div>   
                     <div className='form-group row'>
-                        <label className='col-sm-2 col-form-label' htmlFor='repassword'>Підтвердження паролю:</label>
+                        <label className='col-sm-2 col-form-label' htmlFor='repassword'>Підтвердження паролю</label>
                         <div className='col-sm-10'>
                             <input 
                                 className ='form-control'
