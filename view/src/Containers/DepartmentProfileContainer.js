@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import DepartmentProfile from '../Components/DepartmentProfile';
-import { fetchDepartment } from '../actions/departmentActions';
+import { fetchDepartment, updateDepartment } from '../actions/departmentActions';
 
 class DepartmentProfileContainer extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class DepartmentProfileContainer extends React.Component {
         return <DepartmentProfile 
             match={this.props.match}
             department={this.props.department}
+            updateDepartment={this.props.updateDepartment}
         />;
     }
 }
@@ -25,7 +26,8 @@ class DepartmentProfileContainer extends React.Component {
 DepartmentProfileContainer.propTypes = {
     match: PropTypes.object,
     department: PropTypes.object,
-    getDepartment: PropTypes.func
+    getDepartment: PropTypes.func,
+    updateDepartment: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -37,7 +39,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDepartment: (url) => dispatch(fetchDepartment(url))
+        getDepartment: (url) => dispatch(fetchDepartment(url)),
+        updateDepartment: (url, data) => dispatch(updateDepartment(url, data))
     };
 };
 
