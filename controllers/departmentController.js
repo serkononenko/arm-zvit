@@ -29,6 +29,14 @@ const department_create = (req, res) => {
     });
 };
 
+const department_update = (req, res) => {
+    const _id = req.params.id;
+    Department.findOneAndUpdate({_id}, { $set: req.body}, (err) => {
+        if (err) throw err;
+        res.status(200).end();
+    });
+};
+
 const department_find_by_id = (req, res) => {
     const { _id } = req.body;
     Department.findById(_id, (err, result) => {
@@ -41,5 +49,6 @@ module.exports = {
     department_list,
     department_profile,
     department_create,
+    department_update,
     department_find_by_id
 };
