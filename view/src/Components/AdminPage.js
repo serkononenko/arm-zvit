@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 import ContentLayout from '../Layouts/ContentLayout/ContentLayout';
-//import DepartmentInput from '../Forms/DepartmentForm/DepartmentInput';
-import DepartmentList from './DepartmentList';
+import DepartmentListContainer from '../Containers/DepartmentListContainer';
 import UserListContainer from '../Containers/UserListContainer';
 import ImportReport from './ImportReport/ImportReport';
 
@@ -27,7 +26,7 @@ const AdminPage = ({ match }) => {
                 </nav>
             
                 <Route path={`${match.path}/users`} exact render={() => <UserListContainer />} />
-                <Route path={`${match.path}/departments`} render={() => <DepartmentList />} />
+                <Route path={`${match.path}/departments`} render={() => <DepartmentListContainer />} />
                 <Route path={`${match.path}/reports`} render={() => <ImportReport />} />
             </>    
         </ContentLayout>
