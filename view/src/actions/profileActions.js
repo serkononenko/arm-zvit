@@ -85,7 +85,7 @@ function failureUpdateProfile(message) {
 export function updateProfile(url, data) {
     
     let config = {
-        method: 'POST',
+        method: 'PATCH',
         body: data
     };
 
