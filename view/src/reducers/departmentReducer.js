@@ -20,12 +20,14 @@ export default function departmentReducer(state = initialState, action) {
         return Object.assign({}, state, {
             isFetching: false,
             isReceived: true,
+            isUpdated: false,
             department: action.payload
         });
     case RECEIVE_DEPARTMENT_LIST:
         return Object.assign({}, state, {
             isFetching: false,
             isReceived: true,
+            isUpdated: false,
             departmentList: action.payload
         });
     case FAILURE_DEPARTMENT:

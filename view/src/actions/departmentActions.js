@@ -21,6 +21,7 @@ function receiveDepartment(data) {
         type: RECEIVE_DEPARTMENT,
         isFetching: false,
         isReceived: true,
+        isUpdated: false,
         payload: data
     };
 }
@@ -30,6 +31,7 @@ function receiveDepartmentList(data) {
         type: RECEIVE_DEPARTMENT_LIST,
         isFetching: false,
         isReceived: true,
+        isUpdated: false,
         payload: data
     };
 }
