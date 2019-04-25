@@ -1,0 +1,17 @@
+.link-department-change-name {
+    text-align: center;
+}
+
+.link-department-change-name::before {
+    position: absolute;
+    content: 'Назва';
+    color: #5f6368;
+    left: 10px;
+}
+
+.link-department-change-name::after {
+    position: absolute;
+    content: '❱';
+    color: #5f6368;
+    right: 10px;
+}
