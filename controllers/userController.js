@@ -1,4 +1,3 @@
-const crypto = require('crypto');
 const JWT = require('../utils/JWT');
 const User = require('../models/userbase');
 
@@ -13,17 +12,14 @@ const user_list = (req, res) => {
 
 const user_create = (req, res) => {
     const { login, password, department } = req.body;
-    crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
+    const userData = new User({
+        login,
+        password,
+        department
+    });
+    userData.save((err) => {
         if (err) throw err;
-        const userData = new User({
-            login,
-            password: derivedKey.toString('hex'),
-            department
-        });
-        userData.save((err) => {
-            if (err) throw err;
-            else res.status(200).send('OK');
-        });
+        else res.status(200).send('OK');
     });
 };
 
@@ -48,21 +44,19 @@ async function login_user(req, res) {
     if (!result) {
         res.status(401).send('Unauthorized');
     } else {
-        crypto.pbkdf2(password, JWT.salt, 100000, 64, JWT.digest, (err, derivedKey) => {
-            if (err) throw err;
-            if (derivedKey.toString('hex') === result.password) {
-                const { _id, login, isAdmin } = result;
-                const payload = {
-                    _id,
-                    login,
-                    isAdmin
-                };
-                const token = JWT.sign(payload);
-                res.status(200).send(token);
-            } else {
-                res.status(403).send('Forbidden');
-            }
-        });
+        if (User.comparePasswords(password, result)) {
+            const { _id, login, isAdmin } = result;
+            const payload = {
+                _id,
+                login,
+                isAdmin
+            };
+            const token = JWT.sign(payload);
+            res.status(200).send(token);
+        } else {
+            res.status(403).send('Forbidden');
+        }
+ 
     }
 }
 
